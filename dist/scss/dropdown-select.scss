@@ -4,13 +4,13 @@
 /* dropdown component styles */
 dropdown-select {
   position: relative;
-  width: vars.$dropdown-width;
-  margin-bottom: vars.$spacing-md;
+  width: var(--dropdown-width);
+  margin-bottom: var(--spacing-md);
   display: block;
-  font-family: vars.$font-family;
-  font-size: vars.$font-size-base;
-  line-height: vars.$line-height;
-  color: vars.$color-text;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
 }
 
 /* hide dropdown when aria-hidden="true" */
@@ -24,31 +24,31 @@ dropdown-trigger {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: vars.$spacing-sm vars.$spacing-md;
-  background-color: vars.$color-background;
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$border-radius;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: vars.$transition-default;
+  transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
 
   &:hover {
-    border-color: vars.$color-border-hover;
+    border-color: var(--color-border-hover);
   }
 
   &:focus {
     outline: none;
-    border-color: vars.$color-primary;
-    box-shadow: 0 0 0 3px rgba(vars.$color-primary, 0.25);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 66, 153, 225), 0.25);
   }
 }
 
 /* caret icon */
 .dropdown-caret {
   border-style: solid;
-  border-width: vars.$caret-size vars.$caret-size 0;
-  border-color: vars.$color-border-dark transparent transparent;
-  margin-left: vars.$spacing-sm;
-  transition: transform vars.$transition-duration;
+  border-width: var(--caret-size) var(--caret-size) 0;
+  border-color: var(--color-border-dark) transparent transparent;
+  margin-left: var(--spacing-sm);
+  transition: transform var(--transition-duration);
 }
 
 dropdown-trigger[aria-expanded="true"] .dropdown-caret {
@@ -58,16 +58,16 @@ dropdown-trigger[aria-expanded="true"] .dropdown-caret {
 /* options container */
 dropdown-options {
   position: absolute;
-  top: calc(100% + #{vars.$spacing-xs});
+  top: calc(100% + var(--spacing-xs));
   left: 0;
   width: 100%;
-  max-height: vars.$options-max-height;
+  max-height: var(--options-max-height);
   overflow-y: auto;
-  background-color: vars.$color-background;
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$border-radius;
-  box-shadow: vars.$box-shadow;
-  z-index: vars.$z-index-dropdown;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  z-index: var(--z-index-dropdown);
 }
 
 /* styling for the list */
@@ -79,23 +79,23 @@ dropdown-options {
 
 /* option items */
 dropdown-option {
-  padding: vars.$spacing-sm vars.$spacing-md;
+  padding: var(--spacing-sm) var(--spacing-md);
   cursor: pointer;
-  transition: background-color vars.$transition-duration;
+  transition: background-color var(--transition-duration);
   display: block;
 
   &:hover {
-    background-color: vars.$color-hover;
+    background-color: var(--color-hover);
   }
 
   &:focus {
     outline: none;
-    background-color: vars.$color-focus;
-    box-shadow: inset 0 0 0 2px vars.$color-primary;
+    background-color: var(--color-focus);
+    box-shadow: inset 0 0 0 2px var(--color-primary);
   }
 
   &[aria-selected="true"] {
-    background-color: vars.$color-selected;
+    background-color: var(--color-selected);
     font-weight: 500;
   }
 }

@@ -42,6 +42,9 @@ export class DropdownSelect extends HTMLElement {
     this.#options = this.querySelectorAll('dropdown-option');
     this.#label = this.#trigger?.querySelector('.dropdown-label');
 
+    // Make sure the component itself isn't focusable
+    this.setAttribute('tabindex', '-1');
+
     // initialize component
     this.setupAriaAttributes();
     this.bindUI();

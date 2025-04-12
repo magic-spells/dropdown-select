@@ -31,7 +31,7 @@
     }
   }
 
-  var css_248z = "dropdown-select{color:#333;display:block;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;font-size:1rem;line-height:1.5;margin-bottom:1rem;position:relative;width:300px}dropdown-select[aria-hidden=true] dropdown-options{display:none}dropdown-trigger{align-items:center;background-color:#fff;border:1px solid #ddd;border-radius:.25rem;cursor:pointer;display:flex;justify-content:space-between;padding:.75rem 1rem;transition:border-color .2s,box-shadow .2s;width:100%}dropdown-trigger:hover{border-color:#aaa}dropdown-trigger:focus{border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.25);outline:none}.dropdown-caret{border-color:#666 transparent transparent;border-style:solid;border-width:.25rem .25rem 0;margin-left:.75rem;transition:transform .2s}dropdown-trigger[aria-expanded=true] .dropdown-caret{transform:rotate(180deg)}dropdown-options{background-color:#fff;border:1px solid #ddd;border-radius:.25rem;box-shadow:0 4px 6px rgba(0,0,0,.1);left:0;max-height:15rem;overflow-y:auto;position:absolute;top:calc(100% + .25rem);width:100%;z-index:10}.dropdown-list{list-style:none;margin:0;padding:0}dropdown-option{cursor:pointer;display:block;padding:.75rem 1rem;transition:background-color .2s}dropdown-option:hover{background-color:#f0f0f0}dropdown-option:focus{background-color:#e6f7ff;box-shadow:inset 0 0 0 2px #4299e1;outline:none}dropdown-option[aria-selected=true]{background-color:#e6f7ff;font-weight:500}.dropdown-hidden-input{height:0;opacity:0;position:absolute;width:0}";
+  var css_248z = ":root{--dropdown-width:300px;--options-max-height:15rem;--caret-size:0.25rem;--font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;--font-size-base:1rem;--line-height:1.5;--color-text:#333;--color-background:#fff;--color-border:#ddd;--color-border-hover:#aaa;--color-border-dark:#666;--color-primary:#4299e1;--color-primary-rgb:66,153,225;--color-hover:#f0f0f0;--color-focus:#e6f7ff;--color-selected:#e6f7ff;--spacing-xs:0.25rem;--spacing-sm:0.75rem;--spacing-md:1rem;--border-radius:0.25rem;--box-shadow:0 4px 6px rgba(0,0,0,.1);--z-index-dropdown:10;--transition-duration:0.2s}dropdown-select{color:var(--color-text);display:block;font-family:var(--font-family);font-size:var(--font-size-base);line-height:var(--line-height);margin-bottom:var(--spacing-md);position:relative;width:var(--dropdown-width)}dropdown-select[aria-hidden=true] dropdown-options{display:none}dropdown-trigger{align-items:center;background-color:var(--color-background);border:1px solid var(--color-border);border-radius:var(--border-radius);cursor:pointer;display:flex;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);transition:border-color var(--transition-duration),box-shadow var(--transition-duration);width:100%}dropdown-trigger:hover{border-color:var(--color-border-hover)}dropdown-trigger:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(var(--color-primary-rgb,66,153,225),.25);outline:none}.dropdown-caret{border-color:var(--color-border-dark) transparent transparent;border-style:solid;border-width:var(--caret-size) var(--caret-size) 0;margin-left:var(--spacing-sm);transition:transform var(--transition-duration)}dropdown-trigger[aria-expanded=true] .dropdown-caret{transform:rotate(180deg)}dropdown-options{background-color:var(--color-background);border:1px solid var(--color-border);border-radius:var(--border-radius);box-shadow:var(--box-shadow);left:0;max-height:var(--options-max-height);overflow-y:auto;position:absolute;top:calc(100% + var(--spacing-xs));width:100%;z-index:var(--z-index-dropdown)}.dropdown-list{list-style:none;margin:0;padding:0}dropdown-option{cursor:pointer;display:block;padding:var(--spacing-sm) var(--spacing-md);transition:background-color var(--transition-duration)}dropdown-option:hover{background-color:var(--color-hover)}dropdown-option:focus{background-color:var(--color-focus);box-shadow:inset 0 0 0 2px var(--color-primary);outline:none}dropdown-option[aria-selected=true]{background-color:var(--color-selected);font-weight:500}.dropdown-hidden-input{height:0;opacity:0;position:absolute;width:0}";
   styleInject(css_248z);
 
   /**
@@ -77,6 +77,9 @@
       this.#optionsContainer = this.querySelector('dropdown-options');
       this.#options = this.querySelectorAll('dropdown-option');
       this.#label = this.#trigger?.querySelector('.dropdown-label');
+
+      // Make sure the component itself isn't focusable
+      this.setAttribute('tabindex', '-1');
 
       // initialize component
       this.setupAriaAttributes();
@@ -378,16 +381,50 @@
    * @extends HTMLElement
    */
   class DropdownTrigger extends HTMLElement {
+    #handleKeyDown;
+    
     constructor() {
       super();
+      // Make the trigger focusable
       this.setAttribute('tabindex', '0');
+      this.#handleKeyDown = this.#onKeyDown.bind(this);
     }
 
     connectedCallback() {
+      // Add caret if not present
       if (!this.querySelector('.dropdown-caret')) {
         const caret = document.createElement('span');
         caret.className = 'dropdown-caret';
         this.appendChild(caret);
+      }
+      
+      // Add keyboard event listener
+      this.addEventListener('keydown', this.#handleKeyDown);
+    }
+    
+    disconnectedCallback() {
+      this.removeEventListener('keydown', this.#handleKeyDown);
+    }
+    
+    /**
+     * Handle keydown events on the trigger
+     * @param {KeyboardEvent} e - The keyboard event
+     * @private
+     */
+    #onKeyDown(e) {
+      // Handle Enter and Space key presses
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent event bubbling
+        
+        // Find parent dropdown-select and toggle it
+        const dropdown = this.closest('dropdown-select');
+        if (dropdown && typeof dropdown.toggleDropdown === 'function') {
+          dropdown.toggleDropdown();
+        } else {
+          // Fallback to click if direct method call isn't available
+          this.click();
+        }
       }
     }
   }

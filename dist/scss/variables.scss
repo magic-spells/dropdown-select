@@ -1,4 +1,5 @@
 // dropdown select variables
+// SCSS variables for internal component use and customization
 // these variables can be customized by the user
 
 // sizing
@@ -24,6 +25,9 @@ $color-hover: #f0f0f0 !default;
 $color-focus: #e6f7ff !default;
 $color-selected: #e6f7ff !default;
 
+// RGB values for use in rgba() functions
+$color-primary-rgb: 66, 153, 225 !default;
+
 // spacing
 $spacing-xs: 0.25rem !default;
 $spacing-sm: 0.75rem !default;
@@ -37,3 +41,39 @@ $transition-duration: 0.2s !default;
 $transition-default:
 	border-color $transition-duration,
 	box-shadow $transition-duration !default;
+
+// Define CSS Custom Properties (variables) using the SCSS values as defaults
+:root {
+  // sizing
+  --dropdown-width: #{$dropdown-width};
+  --options-max-height: #{$options-max-height};
+  --caret-size: #{$caret-size};
+  
+  // fonts
+  --font-family: #{$font-family};
+  --font-size-base: #{$font-size-base};
+  --line-height: #{$line-height};
+  
+  // colors
+  --color-text: #{$color-text};
+  --color-background: #{$color-background};
+  --color-border: #{$color-border};
+  --color-border-hover: #{$color-border-hover};
+  --color-border-dark: #{$color-border-dark};
+  --color-primary: #{$color-primary};
+  --color-primary-rgb: #{$color-primary-rgb};
+  --color-hover: #{$color-hover};
+  --color-focus: #{$color-focus};
+  --color-selected: #{$color-selected};
+  
+  // spacing
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  
+  // misc
+  --border-radius: #{$border-radius};
+  --box-shadow: #{$box-shadow};
+  --z-index-dropdown: #{$z-index-dropdown};
+  --transition-duration: #{$transition-duration};
+}

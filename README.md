@@ -133,17 +133,41 @@ This package provides multiple ways to integrate with your SCSS workflow:
 
 ### CSS Variables
 
-You can also override the default styles using CSS custom properties:
+You can customize the dropdown appearance using CSS custom properties. All styling aspects are available as variables:
 
 ```css
 dropdown-select {
+	/* Sizing */
 	--dropdown-width: 400px;
+	--options-max-height: 15rem;
+	--caret-size: 0.25rem;
+	
+	/* Colors */
+	--color-text: #333;
+	--color-background: #fff;
+	--color-border: #ddd;
+	--color-border-hover: #aaa;
+	--color-border-dark: #666;
 	--color-primary: #ff5722;
-	--border-radius: 0.5rem;
+	--color-primary-rgb: 255, 87, 34; /* For alpha transparency */
 	--color-hover: #f5f5f5;
+	--color-focus: #e6f7ff;
 	--color-selected: #ffede6;
+	
+	/* Spacing */
+	--spacing-xs: 0.25rem;
+	--spacing-sm: 0.75rem;
+	--spacing-md: 1rem;
+	
+	/* Misc */
+	--border-radius: 0.5rem;
+	--box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--z-index-dropdown: 10;
+	--transition-duration: 0.2s;
 }
 ```
+
+This enables theme switching and custom styling without modifying the component itself.
 
 ## Examples
 
