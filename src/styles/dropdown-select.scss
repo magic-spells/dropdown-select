@@ -51,14 +51,26 @@ dropdown-trigger {
   transition: transform var(--transition-duration);
 }
 
-dropdown-trigger[aria-expanded="true"] .dropdown-caret {
+/* Flipped caret when expanded (default direction) */
+dropdown-select:not([direction="up"]) dropdown-trigger[aria-expanded="true"] .dropdown-caret {
   transform: rotate(180deg);
+}
+
+/* Already flipped caret for upward dropdowns when closed */
+dropdown-select[direction="up"] .dropdown-caret {
+  transform: rotate(180deg);
+  border-width: 0 var(--caret-size) var(--caret-size);
+  border-color: transparent transparent var(--color-border-dark);
+}
+
+/* Flip back to normal when expanded for upward dropdowns */
+dropdown-select[direction="up"] dropdown-trigger[aria-expanded="true"] .dropdown-caret {
+  transform: rotate(0);
 }
 
 /* options container */
 dropdown-options {
   position: absolute;
-  top: calc(100% + var(--spacing-xs));
   left: 0;
   width: 100%;
   max-height: var(--options-max-height);
@@ -68,6 +80,21 @@ dropdown-options {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   z-index: var(--z-index-dropdown);
+}
+
+/* Default direction (down) */
+dropdown-select:not([direction="up"]) dropdown-options {
+  top: calc(100% + var(--spacing-xs));
+}
+
+/* Direction up */
+dropdown-select[direction="up"] dropdown-options {
+  bottom: calc(100% + var(--spacing-xs));
+}
+
+/* Add some elevation for upward direction to create nice shadow */
+dropdown-select[direction="up"] dropdown-options {
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* styling for the list */

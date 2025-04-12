@@ -18,6 +18,11 @@ class DropdownSelect extends HTMLElement {
   #label;
   #currentFocusIndex = -1;
 
+  // Observed attributes
+  static get observedAttributes() {
+    return ['position'];
+  }
+
   constructor() {
     super();
 
@@ -295,9 +300,41 @@ class DropdownSelect extends HTMLElement {
   }
 
   /**
+   * Determines if the dropdown should open upward based on available space
+   * @private
+   */
+  #determineDirection() {
+    // If position is explicitly set, honor that
+    const userPosition = this.getAttribute('position');
+    if (userPosition === 'up' || userPosition === 'down') {
+      return userPosition;
+    }
+    
+    // Calculate available space
+    const rect = this.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const estimatedOptionsHeight = Math.min(
+      this.#options.length * 40, // Rough estimate of option height
+      parseInt(getComputedStyle(this).getPropertyValue('--options-max-height') || '15rem') * 16 // Convert rem to px
+    );
+    
+    // Determine if there's not enough space below, but more space above
+    if (spaceBelow < estimatedOptionsHeight && rect.top > estimatedOptionsHeight) {
+      return 'up';
+    }
+    
+    // Default to down
+    return 'down';
+  }
+
+  /**
    * shows the dropdown options
    */
   show() {
+    // Determine direction to open
+    const direction = this.#determineDirection();
+    this.setAttribute('direction', direction);
+    
     // set attributes for open state
     this.setAttribute('aria-hidden', 'false');
     this.#trigger.setAttribute('aria-expanded', 'true');
@@ -326,6 +363,9 @@ class DropdownSelect extends HTMLElement {
     // set attributes for closed state
     this.setAttribute('aria-hidden', 'true');
     this.#trigger.setAttribute('aria-expanded', 'false');
+    
+    // Remove direction attribute
+    this.removeAttribute('direction');
 
     // reset the current focus index
     this.#currentFocusIndex = -1;
@@ -440,3 +480,4 @@ if (!customElements.get('dropdown-option')) {
 }
 
 export { DropdownOption, DropdownOptions, DropdownSelect, DropdownTrigger };
+//# sourceMappingURL=dropdown-select.esm.js.map

@@ -78,6 +78,22 @@ This package provides multiple distribution formats for different environments:
 </dropdown-select>
 ```
 
+### Opening Direction
+
+The dropdown automatically detects if there's enough space below and will open upward if needed. You can explicitly set the direction with the `position` attribute:
+
+```html
+<!-- Force dropdown to open upward -->
+<dropdown-select position="up">
+  <!-- dropdown content -->
+</dropdown-select>
+
+<!-- Force dropdown to open downward (default) -->
+<dropdown-select position="down">
+  <!-- dropdown content -->
+</dropdown-select>
+```
+
 ### Getting the Selected Value
 
 The selected value is stored in the hidden input element. You can also listen for the `change` event:
