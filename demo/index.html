@@ -1,544 +1,542 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dropdown Select Demo</title>
-        <link rel="stylesheet" href="../dist/dropdown-select.css" />
-        <style>
-            /* demo page styles */
-            body {
-                font-family:
-                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-                    sans-serif;
-                padding: 2rem;
-                max-width: 800px;
-                margin: 0 auto;
-                background-color: #f5f5f5;
-                color: #333;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Select Demo</title>
+    <link rel="stylesheet" href="../dist/dropdown-select.css" />
+    <style>
+      /* demo page styles */
 
-            h1,
-            h2 {
-                margin-bottom: 1rem;
-            }
+      html * {
+        /*        box-sizing: border-box;*/
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+          sans-serif;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #f5f5f5;
+        color: #333;
+      }
 
-            p {
-                margin-bottom: 1.5rem;
-                line-height: 1.5;
-            }
+      h1,
+      h2 {
+        margin-bottom: 1rem;
+      }
 
-            section {
-                margin-bottom: 3rem;
-                padding: 1.5rem;
-                background-color: white;
-                border-radius: 0.5rem;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
+      p {
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
 
-            .demo-container {
-                margin: 2rem 0;
-            }
+      section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-            .output-area {
-                margin-top: 1.5rem;
-                padding: 1rem;
-                background-color: #f0f0f0;
-                border-radius: 0.25rem;
-            }
+      .demo-container {
+        margin: 2rem 0;
+      }
 
-            code {
-                font-family: monospace;
-                background-color: #f2f2f2;
-                padding: 0.2rem 0.4rem;
-                border-radius: 0.25rem;
-                font-size: 0.9em;
-            }
+      .output-area {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #f0f0f0;
+        border-radius: 0.25rem;
+      }
 
-            pre {
-                background-color: #f8f8f8;
-                padding: 1rem;
-                border-radius: 0.25rem;
-                overflow-x: auto;
-                margin: 1rem 0;
-            }
+      code {
+        font-family: monospace;
+        background-color: #f2f2f2;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+      }
 
-            .form-group {
-                margin-bottom: 1.5rem;
-            }
+      pre {
+        background-color: #f8f8f8;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
 
-            label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-weight: 500;
-            }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
 
-            button {
-                padding: 0.5rem 1rem;
-                background-color: #4299e1;
-                color: white;
-                border: none;
-                border-radius: 0.25rem;
-                cursor: pointer;
-                font-size: 1rem;
-            }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
 
-            button:hover {
-                background-color: #3182ce;
-            }
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #4299e1;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-size: 1rem;
+      }
 
-            .theme-selector {
-                margin-bottom: 2rem;
-            }
+      button:hover {
+        background-color: #3182ce;
+      }
 
-            /* custom themes for the demo */
-            .theme-default dropdown-select {
-                /* uses the default styling */
-            }
+      .theme-selector {
+        margin-bottom: 2rem;
+      }
 
-            .theme-dark dropdown-select {
-                --color-background: #2d3748;
-                --color-text: #e2e8f0;
-                --color-border: #4a5568;
-                --color-border-hover: #718096;
-                --color-border-dark: #a0aec0;
-                --color-primary: #4299e1;
-                --color-hover: #1a202c;
-                --color-focus: #2c5282;
-                --color-selected: #2c5282;
-            }
+      /* custom themes for the demo */
+      .theme-default dropdown-select {
+        /* uses the default styling */
+      }
 
-            .theme-rounded dropdown-select {
-                --border-radius: 2rem;
-                --color-primary: #9f7aea;
-                --color-focus: #e9d8fd;
-                --color-selected: #e9d8fd;
-            }
+      .theme-dark dropdown-select {
+        --color-background: #2d3748;
+        --color-text: #e2e8f0;
+        --color-border: #4a5568;
+        --color-border-hover: #718096;
+        --color-border-dark: #a0aec0;
+        --color-primary: #4299e1;
+        --color-hover: #1a202c;
+        --color-focus: #2c5282;
+        --color-selected: #2c5282;
+      }
 
-            .theme-minimal dropdown-select {
-                --border-radius: 0;
-                --color-border: #e2e8f0;
-                --color-border-hover: #cbd5e0;
-                --color-primary: #718096;
-                --color-focus: #f7fafc;
-                --color-selected: #f7fafc;
-                --box-shadow: none;
-            }
+      .theme-rounded dropdown-select {
+        --border-radius: 2rem;
+        --color-primary: #9f7aea;
+        --color-focus: #e9d8fd;
+        --color-selected: #e9d8fd;
+      }
 
-            .theme-colorful dropdown-select {
-                --color-primary: #ed64a6;
-                --color-hover: #fed7e2;
-                --color-focus: #fbb6ce;
-                --color-selected: #fbb6ce;
-                --color-border: #ed64a6;
-                --color-border-hover: #d53f8c;
-            }
+      .theme-minimal dropdown-select {
+        --border-radius: 0;
+        --color-border: #e2e8f0;
+        --color-border-hover: #cbd5e0;
+        --color-primary: #718096;
+        --color-focus: #f7fafc;
+        --color-selected: #f7fafc;
+        --box-shadow: none;
+      }
 
-            /* instructions area */
-            .instructions {
-                margin-top: 2rem;
-                padding: 1rem;
-                background-color: #f9f9f9;
-                border: 1px solid #ddd;
-                border-radius: 0.25rem;
-            }
+      .theme-colorful dropdown-select {
+        --color-primary: #ed64a6;
+        --color-hover: #fed7e2;
+        --color-focus: #fbb6ce;
+        --color-selected: #fbb6ce;
+        --color-border: #ed64a6;
+        --color-border-hover: #d53f8c;
+      }
 
-            .instructions h3 {
-                margin-bottom: 0.5rem;
-                font-size: 1.2rem;
-            }
+      /* instructions area */
+      .instructions {
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 0.25rem;
+      }
 
-            .instructions ul {
-                padding-left: 1.5rem;
-            }
+      .instructions h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+      }
 
-            .instructions li {
-                margin-bottom: 0.25rem;
-            }
+      .instructions ul {
+        padding-left: 1.5rem;
+      }
 
-            .instructions ul ul {
-                margin-top: 0.25rem;
-            }
+      .instructions li {
+        margin-bottom: 0.25rem;
+      }
 
-            .key {
-                display: inline-block;
-                padding: 0.1rem 0.4rem;
-                border: 1px solid #ccc;
-                border-radius: 0.25rem;
-                background-color: #f0f0f0;
-                font-family: monospace;
-                font-size: 0.8rem;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1>Dropdown Select Web Component</h1>
+      .instructions ul ul {
+        margin-top: 0.25rem;
+      }
+
+      .key {
+        display: inline-block;
+        padding: 0.1rem 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        background-color: #f0f0f0;
+        font-family: monospace;
+        font-size: 0.8rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Dropdown Select Web Component</h1>
+      <p>
+        A fully accessible custom dropdown component that can be used
+        as a replacement for the native select element with enhanced
+        styling options and keyboard navigation.
+      </p>
+    </header>
+
+    <main>
+      <section id="basic-example">
+        <h2>Basic Example</h2>
+        <p>A simple dropdown select with default styling.</p>
+
+        <div class="demo-container theme-default">
+          <dropdown-select id="fruit-dropdown">
+            <dropdown-trigger id="fruit-trigger">
+              <span class="dropdown-label">Select a fruit</span>
+            </dropdown-trigger>
+
+            <input
+              type="hidden"
+              class="dropdown-hidden-input"
+              name="selected-fruit"
+              id="selected-fruit" />
+
+            <dropdown-options>
+              <ul class="dropdown-list">
+                <li>
+                  <dropdown-option data-value="apple"
+                    >Apple</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="banana"
+                    >Banana</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="cherry"
+                    >Cherry</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="durian"
+                    >Durian</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="elderberry"
+                    >Elderberry</dropdown-option
+                  >
+                </li>
+              </ul>
+            </dropdown-options>
+          </dropdown-select>
+
+          <div class="output-area">
+            <p>Selected fruit: <span id="fruit-output">None</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="themed-examples">
+        <h2>Themed Examples</h2>
+        <p>
+          The dropdown component can be easily themed using CSS
+          variables.
+        </p>
+
+        <div class="theme-selector">
+          <label for="theme-select">Select a theme:</label>
+          <select id="theme-select">
+            <option value="default">Default</option>
+            <option value="dark">Dark</option>
+            <option value="rounded">Rounded</option>
+            <option value="minimal">Minimal</option>
+            <option value="colorful">Colorful</option>
+          </select>
+        </div>
+
+        <div id="theme-demo" class="demo-container theme-default">
+          <dropdown-select id="color-dropdown">
+            <dropdown-trigger id="color-trigger">
+              <span class="dropdown-label">Select a color</span>
+            </dropdown-trigger>
+
+            <input
+              type="hidden"
+              class="dropdown-hidden-input"
+              name="selected-color"
+              id="selected-color" />
+
+            <dropdown-options>
+              <ul class="dropdown-list">
+                <li>
+                  <dropdown-option data-value="red"
+                    >Red</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="green"
+                    >Green</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="blue"
+                    >Blue</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="yellow"
+                    >Yellow</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="purple"
+                    >Purple</dropdown-option
+                  >
+                </li>
+              </ul>
+            </dropdown-options>
+          </dropdown-select>
+
+          <div class="output-area">
+            <p>Selected color: <span id="color-output">None</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="form-integration">
+        <h2>Form Integration Example</h2>
+        <p>
+          The dropdown component integrates seamlessly with HTML
+          forms.
+        </p>
+
+        <form id="demo-form">
+          <div class="form-group">
+            <label for="animal-dropdown">Select an animal:</label>
+            <dropdown-select id="animal-dropdown">
+              <dropdown-trigger id="animal-trigger">
+                <span class="dropdown-label">Select an animal</span>
+              </dropdown-trigger>
+
+              <input
+                type="hidden"
+                class="dropdown-hidden-input"
+                name="animal"
+                id="animal-input" />
+
+              <dropdown-options>
+                <ul class="dropdown-list">
+                  <li>
+                    <dropdown-option data-value="dog"
+                      >Dog</dropdown-option
+                    >
+                  </li>
+                  <li>
+                    <dropdown-option data-value="cat"
+                      >Cat</dropdown-option
+                    >
+                  </li>
+                  <li>
+                    <dropdown-option data-value="bird"
+                      >Bird</dropdown-option
+                    >
+                  </li>
+                  <li>
+                    <dropdown-option data-value="fish"
+                      >Fish</dropdown-option
+                    >
+                  </li>
+                  <li>
+                    <dropdown-option data-value="rabbit"
+                      >Rabbit</dropdown-option
+                    >
+                  </li>
+                </ul>
+              </dropdown-options>
+            </dropdown-select>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+
+        <div class="output-area">
+          <p>
+            Form submission result:
+            <span id="form-output">Not submitted yet</span>
+          </p>
+        </div>
+      </section>
+
+      <section id="keyboard-navigation">
+        <h2>Keyboard Navigation</h2>
+        <p>
+          The dropdown component supports complete keyboard navigation
+          for accessibility.
+        </p>
+
+        <div class="instructions">
+          <h3>Keyboard Controls</h3>
+          <ul>
+            <li>
+              <span class="key">Tab</span> to focus the dropdown
+            </li>
+            <li>
+              <span class="key">Enter</span> or
+              <span class="key">Space</span> to open/select
+            </li>
+            <li>
+              <span class="key">↑</span>
+              <span class="key">↓</span> arrow keys to navigate
+              options
+            </li>
+            <li>
+              <span class="key">Home</span> to jump to first option
+            </li>
+            <li>
+              <span class="key">End</span> to jump to last option
+            </li>
+            <li>
+              <span class="key">Esc</span> to close the dropdown
+            </li>
+            <li>Type a letter to jump to matching options</li>
+          </ul>
+        </div>
+
+        <div class="demo-container">
+          <dropdown-select id="country-dropdown">
+            <dropdown-trigger id="country-trigger">
+              <span class="dropdown-label">Select a country</span>
+            </dropdown-trigger>
+
+            <input
+              type="hidden"
+              class="dropdown-hidden-input"
+              name="selected-country"
+              id="selected-country" />
+
+            <dropdown-options>
+              <ul class="dropdown-list">
+                <li>
+                  <dropdown-option data-value="australia"
+                    >Australia</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="brazil"
+                    >Brazil</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="canada"
+                    >Canada</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="denmark"
+                    >Denmark</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="egypt"
+                    >Egypt</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="france"
+                    >France</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="germany"
+                    >Germany</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="india"
+                    >India</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="japan"
+                    >Japan</dropdown-option
+                  >
+                </li>
+                <li>
+                  <dropdown-option data-value="mexico"
+                    >Mexico</dropdown-option
+                  >
+                </li>
+              </ul>
+            </dropdown-options>
+          </dropdown-select>
+
+          <div class="output-area">
             <p>
-                A fully accessible custom dropdown component that can be used as
-                a replacement for the native select element with enhanced
-                styling options and keyboard navigation.
+              Selected country:
+              <span id="country-output">None</span>
             </p>
-        </header>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        <main>
-            <section id="basic-example">
-                <h2>Basic Example</h2>
-                <p>A simple dropdown select with default styling.</p>
+    <footer>
+      <p>&copy; 2025 Magic Spells. Released under the MIT License.</p>
+    </footer>
 
-                <div class="demo-container theme-default">
-                    <dropdown-select id="fruit-dropdown">
-                        <dropdown-trigger id="fruit-trigger">
-                            <span class="dropdown-label">Select a fruit</span>
-                        </dropdown-trigger>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Basic example
+        const fruitDropdown =
+          document.getElementById('fruit-dropdown');
+        fruitDropdown.addEventListener('change', function (e) {
+          document.getElementById('fruit-output').textContent =
+            `${e.detail.text} (value: ${e.detail.value})`;
+        });
 
-                        <input
-                            type="hidden"
-                            class="dropdown-hidden-input"
-                            name="selected-fruit"
-                            id="selected-fruit"
-                        />
+        // Theme example
+        const colorDropdown =
+          document.getElementById('color-dropdown');
+        colorDropdown.addEventListener('change', function (e) {
+          document.getElementById('color-output').textContent =
+            `${e.detail.text} (value: ${e.detail.value})`;
+        });
 
-                        <dropdown-options>
-                            <ul class="dropdown-list">
-                                <li>
-                                    <dropdown-option data-value="apple"
-                                        >Apple</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="banana"
-                                        >Banana</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="cherry"
-                                        >Cherry</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="durian"
-                                        >Durian</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="elderberry"
-                                        >Elderberry</dropdown-option
-                                    >
-                                </li>
-                            </ul>
-                        </dropdown-options>
-                    </dropdown-select>
+        // Theme selector
+        const themeSelect = document.getElementById('theme-select');
+        const themeDemo = document.getElementById('theme-demo');
 
-                    <div class="output-area">
-                        <p>
-                            Selected fruit: <span id="fruit-output">None</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
+        themeSelect.addEventListener('change', function () {
+          themeDemo.className = `demo-container theme-${this.value}`;
+        });
 
-            <section id="themed-examples">
-                <h2>Themed Examples</h2>
-                <p>
-                    The dropdown component can be easily themed using CSS
-                    variables.
-                </p>
+        // Form example
+        const demoForm = document.getElementById('demo-form');
+        demoForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          document.getElementById('form-output').textContent =
+            `Selected animal: ${formData.get('animal')}`;
+        });
 
-                <div class="theme-selector">
-                    <label for="theme-select">Select a theme:</label>
-                    <select id="theme-select">
-                        <option value="default">Default</option>
-                        <option value="dark">Dark</option>
-                        <option value="rounded">Rounded</option>
-                        <option value="minimal">Minimal</option>
-                        <option value="colorful">Colorful</option>
-                    </select>
-                </div>
+        // Country example
+        const countryDropdown = document.getElementById(
+          'country-dropdown'
+        );
+        countryDropdown.addEventListener('change', function (e) {
+          document.getElementById('country-output').textContent =
+            `${e.detail.text} (value: ${e.detail.value})`;
+        });
+      });
+    </script>
 
-                <div id="theme-demo" class="demo-container theme-default">
-                    <dropdown-select id="color-dropdown">
-                        <dropdown-trigger id="color-trigger">
-                            <span class="dropdown-label">Select a color</span>
-                        </dropdown-trigger>
-
-                        <input
-                            type="hidden"
-                            class="dropdown-hidden-input"
-                            name="selected-color"
-                            id="selected-color"
-                        />
-
-                        <dropdown-options>
-                            <ul class="dropdown-list">
-                                <li>
-                                    <dropdown-option data-value="red"
-                                        >Red</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="green"
-                                        >Green</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="blue"
-                                        >Blue</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="yellow"
-                                        >Yellow</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="purple"
-                                        >Purple</dropdown-option
-                                    >
-                                </li>
-                            </ul>
-                        </dropdown-options>
-                    </dropdown-select>
-
-                    <div class="output-area">
-                        <p>
-                            Selected color: <span id="color-output">None</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="form-integration">
-                <h2>Form Integration Example</h2>
-                <p>
-                    The dropdown component integrates seamlessly with HTML
-                    forms.
-                </p>
-
-                <form id="demo-form">
-                    <div class="form-group">
-                        <label for="animal-dropdown">Select an animal:</label>
-                        <dropdown-select id="animal-dropdown">
-                            <dropdown-trigger id="animal-trigger">
-                                <span class="dropdown-label"
-                                    >Select an animal</span
-                                >
-                            </dropdown-trigger>
-
-                            <input
-                                type="hidden"
-                                class="dropdown-hidden-input"
-                                name="animal"
-                                id="animal-input"
-                            />
-
-                            <dropdown-options>
-                                <ul class="dropdown-list">
-                                    <li>
-                                        <dropdown-option data-value="dog"
-                                            >Dog</dropdown-option
-                                        >
-                                    </li>
-                                    <li>
-                                        <dropdown-option data-value="cat"
-                                            >Cat</dropdown-option
-                                        >
-                                    </li>
-                                    <li>
-                                        <dropdown-option data-value="bird"
-                                            >Bird</dropdown-option
-                                        >
-                                    </li>
-                                    <li>
-                                        <dropdown-option data-value="fish"
-                                            >Fish</dropdown-option
-                                        >
-                                    </li>
-                                    <li>
-                                        <dropdown-option data-value="rabbit"
-                                            >Rabbit</dropdown-option
-                                        >
-                                    </li>
-                                </ul>
-                            </dropdown-options>
-                        </dropdown-select>
-                    </div>
-
-                    <button type="submit">Submit</button>
-                </form>
-
-                <div class="output-area">
-                    <p>
-                        Form submission result:
-                        <span id="form-output">Not submitted yet</span>
-                    </p>
-                </div>
-            </section>
-
-            <section id="keyboard-navigation">
-                <h2>Keyboard Navigation</h2>
-                <p>
-                    The dropdown component supports complete keyboard navigation
-                    for accessibility.
-                </p>
-
-                <div class="instructions">
-                    <h3>Keyboard Controls</h3>
-                    <ul>
-                        <li>
-                            <span class="key">Tab</span> to focus the dropdown
-                        </li>
-                        <li>
-                            <span class="key">Enter</span> or
-                            <span class="key">Space</span> to open/select
-                        </li>
-                        <li>
-                            <span class="key">↑</span>
-                            <span class="key">↓</span> arrow keys to navigate
-                            options
-                        </li>
-                        <li>
-                            <span class="key">Home</span> to jump to first
-                            option
-                        </li>
-                        <li>
-                            <span class="key">End</span> to jump to last option
-                        </li>
-                        <li>
-                            <span class="key">Esc</span> to close the dropdown
-                        </li>
-                        <li>Type a letter to jump to matching options</li>
-                    </ul>
-                </div>
-
-                <div class="demo-container">
-                    <dropdown-select id="country-dropdown">
-                        <dropdown-trigger id="country-trigger">
-                            <span class="dropdown-label">Select a country</span>
-                        </dropdown-trigger>
-
-                        <input
-                            type="hidden"
-                            class="dropdown-hidden-input"
-                            name="selected-country"
-                            id="selected-country"
-                        />
-
-                        <dropdown-options>
-                            <ul class="dropdown-list">
-                                <li>
-                                    <dropdown-option data-value="australia"
-                                        >Australia</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="brazil"
-                                        >Brazil</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="canada"
-                                        >Canada</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="denmark"
-                                        >Denmark</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="egypt"
-                                        >Egypt</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="france"
-                                        >France</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="germany"
-                                        >Germany</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="india"
-                                        >India</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="japan"
-                                        >Japan</dropdown-option
-                                    >
-                                </li>
-                                <li>
-                                    <dropdown-option data-value="mexico"
-                                        >Mexico</dropdown-option
-                                    >
-                                </li>
-                            </ul>
-                        </dropdown-options>
-                    </dropdown-select>
-
-                    <div class="output-area">
-                        <p>
-                            Selected country:
-                            <span id="country-output">None</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 Magic Spells. Released under the MIT License.</p>
-        </footer>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Basic example
-                const fruitDropdown = document.getElementById("fruit-dropdown");
-                fruitDropdown.addEventListener("change", function (e) {
-                    document.getElementById("fruit-output").textContent =
-                        `${e.detail.text} (value: ${e.detail.value})`;
-                });
-
-                // Theme example
-                const colorDropdown = document.getElementById("color-dropdown");
-                colorDropdown.addEventListener("change", function (e) {
-                    document.getElementById("color-output").textContent =
-                        `${e.detail.text} (value: ${e.detail.value})`;
-                });
-
-                // Theme selector
-                const themeSelect = document.getElementById("theme-select");
-                const themeDemo = document.getElementById("theme-demo");
-
-                themeSelect.addEventListener("change", function () {
-                    themeDemo.className = `demo-container theme-${this.value}`;
-                });
-
-                // Form example
-                const demoForm = document.getElementById("demo-form");
-                demoForm.addEventListener("submit", function (e) {
-                    e.preventDefault();
-                    const formData = new FormData(this);
-                    document.getElementById("form-output").textContent =
-                        `Selected animal: ${formData.get("animal")}`;
-                });
-
-                // Country example
-                const countryDropdown =
-                    document.getElementById("country-dropdown");
-                countryDropdown.addEventListener("change", function (e) {
-                    document.getElementById("country-output").textContent =
-                        `${e.detail.text} (value: ${e.detail.value})`;
-                });
-            });
-        </script>
-
-        <script src="./dropdown-select.js"></script>
-    </body>
+    <script src="./dropdown-select.js"></script>
+  </body>
 </html>

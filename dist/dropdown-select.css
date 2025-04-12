@@ -34,6 +34,11 @@ dropdown-select {
   font-size: var(--font-size-base);
   line-height: var(--line-height);
   color: var(--color-text);
+  box-sizing: border-box;
+}
+
+dropdown-select * {
+  box-sizing: border-box;
 }
 
 /* hide dropdown when aria-hidden="true" */
