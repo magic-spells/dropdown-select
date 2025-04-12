@@ -1,0 +1,79 @@
+{
+  "name": "@magic-spells/dropdown-select",
+  "version": "0.1.0",
+  "description": "Accessible custom dropdown web component.",
+  "author": "Cory Schulz",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/dropdown-select.cjs.js",
+  "module": "dist/dropdown-select.esm.js",
+  "unpkg": "dist/dropdown-select.min.js",
+  "style": "dist/dropdown-select.min.css",
+  "sass": "dist/dropdown-select.scss",
+  "exports": {
+    ".": {
+      "import": "./dist/dropdown-select.esm.js",
+      "require": "./dist/dropdown-select.cjs.js",
+      "default": "./dist/dropdown-select.esm.js"
+    },
+    "./css": "./dist/dropdown-select.css",
+    "./css/min": "./dist/dropdown-select.min.css",
+    "./scss": "./dist/dropdown-select.scss",
+    "./scss/*": "./dist/scss/*"
+  },
+  "sideEffects": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magic-spells/dropdown-select"
+  },
+  "homepage": "https://github.com/magic-spells/dropdown-select#readme",
+  "bugs": {
+    "url": "https://github.com/magic-spells/dropdown-select/issues"
+  },
+  "keywords": [
+    "dropdown",
+    "select",
+    "combobox",
+    "listbox",
+    "web-components",
+    "accessibility",
+    "a11y",
+    "keyboard-navigation",
+    "custom-elements",
+    "form-elements"
+  ],
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint src/ rollup.config.js",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run build",
+    "serve": "rollup -c --watch",
+    "dev": "rollup -c --watch"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.0.0",
+    "globals": "^13.24.0",
+    "prettier": "^3.3.3",
+    "rollup": "^3.0.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-serve": "^1.1.1",
+    "sass": "^1.86.3"
+  }
+}
