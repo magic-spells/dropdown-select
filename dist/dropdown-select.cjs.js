@@ -27,7 +27,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ":root {\n  --dropdown-width: 300px;\n  --options-max-height: 15rem;\n  --caret-size: 0.25rem;\n  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;\n  --font-size-base: 1rem;\n  --line-height: 1.5;\n  --color-text: #333;\n  --color-background: #fff;\n  --color-border: #ddd;\n  --color-border-hover: #aaa;\n  --color-border-dark: #666;\n  --color-primary: #4299e1;\n  --color-primary-rgb: 66, 153, 225;\n  --color-hover: #f0f0f0;\n  --color-focus: #e6f7ff;\n  --color-selected: #e6f7ff;\n  --spacing-xs: 0.25rem;\n  --spacing-sm: 0.75rem;\n  --spacing-md: 1rem;\n  --border-radius: 0.25rem;\n  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  --z-index-dropdown: 10;\n  --transition-duration: 0.2s;\n}\n\n/* dropdown component styles */\ndropdown-select {\n  position: relative;\n  width: var(--dropdown-width);\n  margin-bottom: var(--spacing-md);\n  display: block;\n  font-family: var(--font-family);\n  font-size: var(--font-size-base);\n  line-height: var(--line-height);\n  color: var(--color-text);\n  box-sizing: border-box;\n}\n\ndropdown-select * {\n  box-sizing: border-box;\n}\n\n/* hide dropdown when aria-hidden=\"true\" */\ndropdown-select[aria-hidden=true] dropdown-options {\n  display: none;\n}\n\n/* trigger button styles */\ndropdown-trigger {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  padding: var(--spacing-sm) var(--spacing-md);\n  background-color: var(--color-background);\n  border: 1px solid var(--color-border);\n  border-radius: var(--border-radius);\n  cursor: pointer;\n  transition: border-color var(--transition-duration), box-shadow var(--transition-duration);\n}\ndropdown-trigger:hover {\n  border-color: var(--color-border-hover);\n}\ndropdown-trigger:focus {\n  outline: none;\n  border-color: var(--color-primary);\n  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 66, 153, 225), 0.25);\n}\n\n/* caret icon */\n.dropdown-caret {\n  border-style: solid;\n  border-width: var(--caret-size) var(--caret-size) 0;\n  border-color: var(--color-border-dark) transparent transparent;\n  margin-left: var(--spacing-sm);\n  transition: transform var(--transition-duration);\n}\n\n/* Flipped caret when expanded (default direction) */\ndropdown-select:not([direction=up]) dropdown-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(180deg);\n}\n\n/* Already flipped caret for upward dropdowns when closed */\ndropdown-select[direction=up] .dropdown-caret {\n  transform: rotate(180deg);\n  border-width: 0 var(--caret-size) var(--caret-size);\n  border-color: transparent transparent var(--color-border-dark);\n}\n\n/* Flip back to normal when expanded for upward dropdowns */\ndropdown-select[direction=up] dropdown-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(0);\n}\n\n/* options container */\ndropdown-options {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  max-height: var(--options-max-height);\n  overflow-y: auto;\n  background-color: var(--color-background);\n  border: 1px solid var(--color-border);\n  border-radius: var(--border-radius);\n  box-shadow: var(--box-shadow);\n  z-index: var(--z-index-dropdown);\n}\n\n/* Default direction (down) */\ndropdown-select:not([direction=up]) dropdown-options {\n  top: calc(100% + var(--spacing-xs));\n}\n\n/* Direction up */\ndropdown-select[direction=up] dropdown-options {\n  bottom: calc(100% + var(--spacing-xs));\n}\n\n/* Add some elevation for upward direction to create nice shadow */\ndropdown-select[direction=up] dropdown-options {\n  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);\n}\n\n/* styling for the list */\n.dropdown-list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n/* option items */\ndropdown-option {\n  padding: var(--spacing-sm) var(--spacing-md);\n  cursor: pointer;\n  transition: background-color var(--transition-duration);\n  display: block;\n}\ndropdown-option:hover {\n  background-color: var(--color-hover);\n}\ndropdown-option:focus {\n  outline: none;\n  background-color: var(--color-focus);\n  box-shadow: inset 0 0 0 2px var(--color-primary);\n}\ndropdown-option[aria-selected=true] {\n  background-color: var(--color-selected);\n  font-weight: 500;\n}\n\n/* hidden input */\n.dropdown-hidden-input {\n  position: absolute;\n  opacity: 0;\n  height: 0;\n  width: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRyb3Bkb3duLXNlbGVjdC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQXVCO0VBQ3ZCLDJCQUEyQjtFQUMzQixxQkFBcUI7RUFDckIsb0lBQW9JO0VBQ3BJLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLHdCQUF3QjtFQUN4QixvQkFBb0I7RUFDcEIsMEJBQTBCO0VBQzFCLHlCQUF5QjtFQUN6Qix3QkFBd0I7RUFDeEIsaUNBQWlDO0VBQ2pDLHNCQUFzQjtFQUN0QixzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLHdCQUF3QjtFQUN4QiwwQ0FBMEM7RUFDMUMsc0JBQXNCO0VBQ3RCLDJCQUEyQjtBQUM3Qjs7QUFFQSw4QkFBOEI7QUFDOUI7RUFDRSxrQkFBa0I7RUFDbEIsNEJBQTRCO0VBQzVCLGdDQUFnQztFQUNoQyxjQUFjO0VBQ2QsK0JBQStCO0VBQy9CLGdDQUFnQztFQUNoQywrQkFBK0I7RUFDL0Isd0JBQXdCO0VBQ3hCLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLHNCQUFzQjtBQUN4Qjs7QUFFQSwwQ0FBMEM7QUFDMUM7RUFDRSxhQUFhO0FBQ2Y7O0FBRUEsMEJBQTBCO0FBQzFCO0VBQ0UsYUFBYTtFQUNiLDhCQUE4QjtFQUM5QixtQkFBbUI7RUFDbkIsV0FBVztFQUNYLDRDQUE0QztFQUM1Qyx5Q0FBeUM7RUFDekMscUNBQXFDO0VBQ3JDLG1DQUFtQztFQUNuQyxlQUFlO0VBQ2YsMEZBQTBGO0FBQzVGO0FBQ0E7RUFDRSx1Q0FBdUM7QUFDekM7QUFDQTtFQUNFLGFBQWE7RUFDYixrQ0FBa0M7RUFDbEMsd0VBQXdFO0FBQzFFOztBQUVBLGVBQWU7QUFDZjtFQUNFLG1CQUFtQjtFQUNuQixtREFBbUQ7RUFDbkQsOERBQThEO0VBQzlELDhCQUE4QjtFQUM5QixnREFBZ0Q7QUFDbEQ7O0FBRUEsb0RBQW9EO0FBQ3BEO0VBQ0UseUJBQXlCO0FBQzNCOztBQUVBLDJEQUEyRDtBQUMzRDtFQUNFLHlCQUF5QjtFQUN6QixtREFBbUQ7RUFDbkQsOERBQThEO0FBQ2hFOztBQUVBLDJEQUEyRDtBQUMzRDtFQUNFLG9CQUFvQjtBQUN0Qjs7QUFFQSxzQkFBc0I7QUFDdEI7RUFDRSxrQkFBa0I7RUFDbEIsT0FBTztFQUNQLFdBQVc7RUFDWCxxQ0FBcUM7RUFDckMsZ0JBQWdCO0VBQ2hCLHlDQUF5QztFQUN6QyxxQ0FBcUM7RUFDckMsbUNBQW1DO0VBQ25DLDZCQUE2QjtFQUM3QixnQ0FBZ0M7QUFDbEM7O0FBRUEsNkJBQTZCO0FBQzdCO0VBQ0UsbUNBQW1DO0FBQ3JDOztBQUVBLGlCQUFpQjtBQUNqQjtFQUNFLHNDQUFzQztBQUN4Qzs7QUFFQSxrRUFBa0U7QUFDbEU7RUFDRSx5Q0FBeUM7QUFDM0M7O0FBRUEseUJBQXlCO0FBQ3pCO0VBQ0UsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixTQUFTO0FBQ1g7O0FBRUEsaUJBQWlCO0FBQ2pCO0VBQ0UsNENBQTRDO0VBQzVDLGVBQWU7RUFDZix1REFBdUQ7RUFDdkQsY0FBYztBQUNoQjtBQUNBO0VBQ0Usb0NBQW9DO0FBQ3RDO0FBQ0E7RUFDRSxhQUFhO0VBQ2Isb0NBQW9DO0VBQ3BDLGdEQUFnRDtBQUNsRDtBQUNBO0VBQ0UsdUNBQXVDO0VBQ3ZDLGdCQUFnQjtBQUNsQjs7QUFFQSxpQkFBaUI7QUFDakI7RUFDRSxrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFNBQVM7RUFDVCxRQUFRO0FBQ1YiLCJmaWxlIjoiZHJvcGRvd24tc2VsZWN0LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6cm9vdCB7XG4gIC0tZHJvcGRvd24td2lkdGg6IDMwMHB4O1xuICAtLW9wdGlvbnMtbWF4LWhlaWdodDogMTVyZW07XG4gIC0tY2FyZXQtc2l6ZTogMC4yNXJlbTtcbiAgLS1mb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCBTZWdvZSBVSSwgUm9ib3RvLCBPeHlnZW4sIFVidW50dSwgQ2FudGFyZWxsLCBPcGVuIFNhbnMsIEhlbHZldGljYSBOZXVlLCBzYW5zLXNlcmlmO1xuICAtLWZvbnQtc2l6ZS1iYXNlOiAxcmVtO1xuICAtLWxpbmUtaGVpZ2h0OiAxLjU7XG4gIC0tY29sb3ItdGV4dDogIzMzMztcbiAgLS1jb2xvci1iYWNrZ3JvdW5kOiAjZmZmO1xuICAtLWNvbG9yLWJvcmRlcjogI2RkZDtcbiAgLS1jb2xvci1ib3JkZXItaG92ZXI6ICNhYWE7XG4gIC0tY29sb3ItYm9yZGVyLWRhcms6ICM2NjY7XG4gIC0tY29sb3ItcHJpbWFyeTogIzQyOTllMTtcbiAgLS1jb2xvci1wcmltYXJ5LXJnYjogNjYsIDE1MywgMjI1O1xuICAtLWNvbG9yLWhvdmVyOiAjZjBmMGYwO1xuICAtLWNvbG9yLWZvY3VzOiAjZTZmN2ZmO1xuICAtLWNvbG9yLXNlbGVjdGVkOiAjZTZmN2ZmO1xuICAtLXNwYWNpbmcteHM6IDAuMjVyZW07XG4gIC0tc3BhY2luZy1zbTogMC43NXJlbTtcbiAgLS1zcGFjaW5nLW1kOiAxcmVtO1xuICAtLWJvcmRlci1yYWRpdXM6IDAuMjVyZW07XG4gIC0tYm94LXNoYWRvdzogMCA0cHggNnB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgLS16LWluZGV4LWRyb3Bkb3duOiAxMDtcbiAgLS10cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjJzO1xufVxuXG4vKiBkcm9wZG93biBjb21wb25lbnQgc3R5bGVzICovXG5kcm9wZG93bi1zZWxlY3Qge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHdpZHRoOiB2YXIoLS1kcm9wZG93bi13aWR0aCk7XG4gIG1hcmdpbi1ib3R0b206IHZhcigtLXNwYWNpbmctbWQpO1xuICBkaXNwbGF5OiBibG9jaztcbiAgZm9udC1mYW1pbHk6IHZhcigtLWZvbnQtZmFtaWx5KTtcbiAgZm9udC1zaXplOiB2YXIoLS1mb250LXNpemUtYmFzZSk7XG4gIGxpbmUtaGVpZ2h0OiB2YXIoLS1saW5lLWhlaWdodCk7XG4gIGNvbG9yOiB2YXIoLS1jb2xvci10ZXh0KTtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbn1cblxuZHJvcGRvd24tc2VsZWN0ICoge1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xufVxuXG4vKiBoaWRlIGRyb3Bkb3duIHdoZW4gYXJpYS1oaWRkZW49XCJ0cnVlXCIgKi9cbmRyb3Bkb3duLXNlbGVjdFthcmlhLWhpZGRlbj10cnVlXSBkcm9wZG93bi1vcHRpb25zIHtcbiAgZGlzcGxheTogbm9uZTtcbn1cblxuLyogdHJpZ2dlciBidXR0b24gc3R5bGVzICovXG5kcm9wZG93bi10cmlnZ2VyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogdmFyKC0tc3BhY2luZy1zbSkgdmFyKC0tc3BhY2luZy1tZCk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNvbG9yLWJhY2tncm91bmQpO1xuICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1jb2xvci1ib3JkZXIpO1xuICBib3JkZXItcmFkaXVzOiB2YXIoLS1ib3JkZXItcmFkaXVzKTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0cmFuc2l0aW9uOiBib3JkZXItY29sb3IgdmFyKC0tdHJhbnNpdGlvbi1kdXJhdGlvbiksIGJveC1zaGFkb3cgdmFyKC0tdHJhbnNpdGlvbi1kdXJhdGlvbik7XG59XG5kcm9wZG93bi10cmlnZ2VyOmhvdmVyIHtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1jb2xvci1ib3JkZXItaG92ZXIpO1xufVxuZHJvcGRvd24tdHJpZ2dlcjpmb2N1cyB7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tY29sb3ItcHJpbWFyeSk7XG4gIGJveC1zaGFkb3c6IDAgMCAwIDNweCByZ2JhKHZhcigtLWNvbG9yLXByaW1hcnktcmdiLCA2NiwgMTUzLCAyMjUpLCAwLjI1KTtcbn1cblxuLyogY2FyZXQgaWNvbiAqL1xuLmRyb3Bkb3duLWNhcmV0IHtcbiAgYm9yZGVyLXN0eWxlOiBzb2xpZDtcbiAgYm9yZGVyLXdpZHRoOiB2YXIoLS1jYXJldC1zaXplKSB2YXIoLS1jYXJldC1zaXplKSAwO1xuICBib3JkZXItY29sb3I6IHZhcigtLWNvbG9yLWJvcmRlci1kYXJrKSB0cmFuc3BhcmVudCB0cmFuc3BhcmVudDtcbiAgbWFyZ2luLWxlZnQ6IHZhcigtLXNwYWNpbmctc20pO1xuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gdmFyKC0tdHJhbnNpdGlvbi1kdXJhdGlvbik7XG59XG5cbi8qIEZsaXBwZWQgY2FyZXQgd2hlbiBleHBhbmRlZCAoZGVmYXVsdCBkaXJlY3Rpb24pICovXG5kcm9wZG93bi1zZWxlY3Q6bm90KFtkaXJlY3Rpb249dXBdKSBkcm9wZG93bi10cmlnZ2VyW2FyaWEtZXhwYW5kZWQ9dHJ1ZV0gLmRyb3Bkb3duLWNhcmV0IHtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcbn1cblxuLyogQWxyZWFkeSBmbGlwcGVkIGNhcmV0IGZvciB1cHdhcmQgZHJvcGRvd25zIHdoZW4gY2xvc2VkICovXG5kcm9wZG93bi1zZWxlY3RbZGlyZWN0aW9uPXVwXSAuZHJvcGRvd24tY2FyZXQge1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpO1xuICBib3JkZXItd2lkdGg6IDAgdmFyKC0tY2FyZXQtc2l6ZSkgdmFyKC0tY2FyZXQtc2l6ZSk7XG4gIGJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQgdHJhbnNwYXJlbnQgdmFyKC0tY29sb3ItYm9yZGVyLWRhcmspO1xufVxuXG4vKiBGbGlwIGJhY2sgdG8gbm9ybWFsIHdoZW4gZXhwYW5kZWQgZm9yIHVwd2FyZCBkcm9wZG93bnMgKi9cbmRyb3Bkb3duLXNlbGVjdFtkaXJlY3Rpb249dXBdIGRyb3Bkb3duLXRyaWdnZXJbYXJpYS1leHBhbmRlZD10cnVlXSAuZHJvcGRvd24tY2FyZXQge1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbn1cblxuLyogb3B0aW9ucyBjb250YWluZXIgKi9cbmRyb3Bkb3duLW9wdGlvbnMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDA7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXgtaGVpZ2h0OiB2YXIoLS1vcHRpb25zLW1heC1oZWlnaHQpO1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1jb2xvci1iYWNrZ3JvdW5kKTtcbiAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tY29sb3ItYm9yZGVyKTtcbiAgYm9yZGVyLXJhZGl1czogdmFyKC0tYm9yZGVyLXJhZGl1cyk7XG4gIGJveC1zaGFkb3c6IHZhcigtLWJveC1zaGFkb3cpO1xuICB6LWluZGV4OiB2YXIoLS16LWluZGV4LWRyb3Bkb3duKTtcbn1cblxuLyogRGVmYXVsdCBkaXJlY3Rpb24gKGRvd24pICovXG5kcm9wZG93bi1zZWxlY3Q6bm90KFtkaXJlY3Rpb249dXBdKSBkcm9wZG93bi1vcHRpb25zIHtcbiAgdG9wOiBjYWxjKDEwMCUgKyB2YXIoLS1zcGFjaW5nLXhzKSk7XG59XG5cbi8qIERpcmVjdGlvbiB1cCAqL1xuZHJvcGRvd24tc2VsZWN0W2RpcmVjdGlvbj11cF0gZHJvcGRvd24tb3B0aW9ucyB7XG4gIGJvdHRvbTogY2FsYygxMDAlICsgdmFyKC0tc3BhY2luZy14cykpO1xufVxuXG4vKiBBZGQgc29tZSBlbGV2YXRpb24gZm9yIHVwd2FyZCBkaXJlY3Rpb24gdG8gY3JlYXRlIG5pY2Ugc2hhZG93ICovXG5kcm9wZG93bi1zZWxlY3RbZGlyZWN0aW9uPXVwXSBkcm9wZG93bi1vcHRpb25zIHtcbiAgYm94LXNoYWRvdzogMCAtNHB4IDZweCByZ2JhKDAsIDAsIDAsIDAuMSk7XG59XG5cbi8qIHN0eWxpbmcgZm9yIHRoZSBsaXN0ICovXG4uZHJvcGRvd24tbGlzdCB7XG4gIGxpc3Qtc3R5bGU6IG5vbmU7XG4gIHBhZGRpbmc6IDA7XG4gIG1hcmdpbjogMDtcbn1cblxuLyogb3B0aW9uIGl0ZW1zICovXG5kcm9wZG93bi1vcHRpb24ge1xuICBwYWRkaW5nOiB2YXIoLS1zcGFjaW5nLXNtKSB2YXIoLS1zcGFjaW5nLW1kKTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIHZhcigtLXRyYW5zaXRpb24tZHVyYXRpb24pO1xuICBkaXNwbGF5OiBibG9jaztcbn1cbmRyb3Bkb3duLW9wdGlvbjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNvbG9yLWhvdmVyKTtcbn1cbmRyb3Bkb3duLW9wdGlvbjpmb2N1cyB7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNvbG9yLWZvY3VzKTtcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAwIDAgMnB4IHZhcigtLWNvbG9yLXByaW1hcnkpO1xufVxuZHJvcGRvd24tb3B0aW9uW2FyaWEtc2VsZWN0ZWQ9dHJ1ZV0ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1jb2xvci1zZWxlY3RlZCk7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG59XG5cbi8qIGhpZGRlbiBpbnB1dCAqL1xuLmRyb3Bkb3duLWhpZGRlbi1pbnB1dCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgb3BhY2l0eTogMDtcbiAgaGVpZ2h0OiAwO1xuICB3aWR0aDogMDtcbn0iXX0= */";
+var css_248z = ":root{--dropdown-width:300px;--options-max-height:15rem;--caret-size:0.25rem;--font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;--font-size-base:1rem;--line-height:1.5;--color-text:#333;--color-background:#fff;--color-border:#ddd;--color-border-hover:#aaa;--color-border-dark:#666;--color-primary:#4299e1;--color-primary-rgb:66,153,225;--color-hover:#f0f0f0;--color-focus:#e6f7ff;--color-selected:#e6f7ff;--spacing-xs:0.25rem;--spacing-sm:0.75rem;--spacing-md:1rem;--border-radius:0.25rem;--box-shadow:0 4px 6px rgba(0,0,0,.1);--z-index-dropdown:10;--transition-duration:0.2s}dropdown-select{color:var(--color-text);display:block;font-family:var(--font-family);font-size:var(--font-size-base);line-height:var(--line-height);margin-bottom:var(--spacing-md);position:relative;width:var(--dropdown-width)}dropdown-select,dropdown-select *{box-sizing:border-box}dropdown-select[aria-hidden=true] dropdown-options{display:none}dropdown-trigger{align-items:center;background-color:var(--color-background);border:1px solid var(--color-border);border-radius:var(--border-radius);cursor:pointer;display:flex;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);transition:border-color var(--transition-duration),box-shadow var(--transition-duration);width:100%}dropdown-trigger:hover{border-color:var(--color-border-hover)}dropdown-trigger:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(var(--color-primary-rgb,66,153,225),.25);outline:none}.dropdown-caret{border-color:var(--color-border-dark) transparent transparent;border-style:solid;border-width:var(--caret-size) var(--caret-size) 0;margin-left:var(--spacing-sm);transition:transform var(--transition-duration)}dropdown-select:not([direction=up]) dropdown-trigger[aria-expanded=true] .dropdown-caret{transform:rotate(180deg)}dropdown-select[direction=up] .dropdown-caret{border-color:transparent transparent var(--color-border-dark);border-width:0 var(--caret-size) var(--caret-size);transform:rotate(180deg)}dropdown-select[direction=up] dropdown-trigger[aria-expanded=true] .dropdown-caret{transform:rotate(0)}dropdown-options{background-color:var(--color-background);border:1px solid var(--color-border);border-radius:var(--border-radius);box-shadow:var(--box-shadow);left:0;max-height:var(--options-max-height);overflow-y:auto;position:absolute;width:100%;z-index:var(--z-index-dropdown)}dropdown-select:not([direction=up]) dropdown-options{top:calc(100% + var(--spacing-xs))}dropdown-select[direction=up] dropdown-options{bottom:calc(100% + var(--spacing-xs));box-shadow:0 -4px 6px rgba(0,0,0,.1)}.dropdown-list{list-style:none;margin:0;padding:0}dropdown-option{cursor:pointer;display:block;padding:var(--spacing-sm) var(--spacing-md);transition:background-color var(--transition-duration)}dropdown-option:hover{background-color:var(--color-hover)}dropdown-option:focus{background-color:var(--color-focus);box-shadow:inset 0 0 0 2px var(--color-primary);outline:none}dropdown-option[aria-selected=true]{background-color:var(--color-selected);font-weight:500}.dropdown-hidden-input{height:0;opacity:0;position:absolute;width:0}";
 styleInject(css_248z);
 
 /**
@@ -37,8 +37,6 @@ styleInject(css_248z);
  */
 class DropdownSelect extends HTMLElement {
   // private fields for event handlers
-  #handleTriggerClick;
-  #handleOptionClick;
   #handleDocumentClick;
   #handleKeyDown;
 
@@ -62,8 +60,6 @@ class DropdownSelect extends HTMLElement {
     this.setAttribute('aria-hidden', 'true');
 
     // bind event handlers
-    this.#handleTriggerClick = this.toggleDropdown.bind(this);
-    this.#handleOptionClick = this.selectOption.bind(this);
     this.#handleDocumentClick = this.handleOutsideClick.bind(this);
     this.#handleKeyDown = this.handleKeyboardNavigation.bind(this);
   }
@@ -130,26 +126,16 @@ class DropdownSelect extends HTMLElement {
    * binds the necessary ui events to the component
    */
   bindUI() {
-    // bind trigger click
-    this.#trigger.addEventListener('click', this.#handleTriggerClick);
-
-    // bind option clicks
-    this.#options.forEach((option) => {
-      option.addEventListener('click', this.#handleOptionClick);
-    });
+    // No need to bind element events - child components manage their own events
+    // This method is kept for potential future global event binding
   }
 
   /**
    * unbinds event listeners
    */
   unbindUI() {
-    // remove trigger event
-    this.#trigger.removeEventListener('click', this.#handleTriggerClick);
-
-    // remove option events
-    this.#options.forEach((option) => {
-      option.removeEventListener('click', this.#handleOptionClick);
-    });
+    // No element events to remove - child components manage their own events
+    // This method is kept for potential future global event cleanup
 
     // remove document events if they exist
     document.removeEventListener('click', this.#handleDocumentClick);
@@ -418,12 +404,14 @@ class DropdownSelect extends HTMLElement {
  */
 class DropdownTrigger extends HTMLElement {
   #handleKeyDown;
+  #handleClick;
   
   constructor() {
     super();
     // Make the trigger focusable
     this.setAttribute('tabindex', '0');
     this.#handleKeyDown = this.#onKeyDown.bind(this);
+    this.#handleClick = this.#onClick.bind(this);
   }
 
   connectedCallback() {
@@ -434,12 +422,14 @@ class DropdownTrigger extends HTMLElement {
       this.appendChild(caret);
     }
     
-    // Add keyboard event listener
+    // Add event listeners
     this.addEventListener('keydown', this.#handleKeyDown);
+    this.addEventListener('click', this.#handleClick);
   }
   
   disconnectedCallback() {
     this.removeEventListener('keydown', this.#handleKeyDown);
+    this.removeEventListener('click', this.#handleClick);
   }
   
   /**
@@ -452,15 +442,27 @@ class DropdownTrigger extends HTMLElement {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation(); // Prevent event bubbling
-      
-      // Find parent dropdown-select and toggle it
-      const dropdown = this.closest('dropdown-select');
-      if (dropdown && typeof dropdown.toggleDropdown === 'function') {
-        dropdown.toggleDropdown();
-      } else {
-        // Fallback to click if direct method call isn't available
-        this.click();
-      }
+      this.#toggleDropdown();
+    }
+  }
+  
+  /**
+   * Handle click events on the trigger
+   * @param {MouseEvent} e - The mouse event
+   * @private
+   */
+  #onClick(e) {
+    this.#toggleDropdown();
+  }
+  
+  /**
+   * Toggle the parent dropdown
+   * @private
+   */
+  #toggleDropdown() {
+    const dropdown = this.closest('dropdown-select');
+    if (dropdown && typeof dropdown.toggleDropdown === 'function') {
+      dropdown.toggleDropdown();
     }
   }
 }
@@ -482,8 +484,42 @@ class DropdownOptions extends HTMLElement {
  * @extends HTMLElement
  */
 class DropdownOption extends HTMLElement {
+  #handleClick;
+  
   constructor() {
     super();
+    this.#handleClick = this.#onClick.bind(this);
+  }
+  
+  connectedCallback() {
+    // Add click event listener
+    this.addEventListener('click', this.#handleClick);
+  }
+  
+  disconnectedCallback() {
+    // Clean up event listener
+    this.removeEventListener('click', this.#handleClick);
+  }
+  
+  /**
+   * Handle click events on the option
+   * @param {MouseEvent} e - The mouse event
+   * @private
+   */
+  #onClick(e) {
+    e.preventDefault();
+    this.#notifySelection();
+  }
+  
+  /**
+   * Notify the parent dropdown that this option was selected
+   * @private
+   */
+  #notifySelection() {
+    const dropdown = this.closest('dropdown-select');
+    if (dropdown && typeof dropdown.selectOption === 'function') {
+      dropdown.selectOption({ target: this });
+    }
   }
 }
 
@@ -515,4 +551,3 @@ exports.DropdownOption = DropdownOption;
 exports.DropdownOptions = DropdownOptions;
 exports.DropdownSelect = DropdownSelect;
 exports.DropdownTrigger = DropdownTrigger;
-//# sourceMappingURL=dropdown-select.cjs.js.map

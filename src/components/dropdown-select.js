@@ -5,8 +5,6 @@
  */
 export class DropdownSelect extends HTMLElement {
   // private fields for event handlers
-  #handleTriggerClick;
-  #handleOptionClick;
   #handleDocumentClick;
   #handleKeyDown;
 
@@ -30,8 +28,6 @@ export class DropdownSelect extends HTMLElement {
     this.setAttribute('aria-hidden', 'true');
 
     // bind event handlers
-    this.#handleTriggerClick = this.toggleDropdown.bind(this);
-    this.#handleOptionClick = this.selectOption.bind(this);
     this.#handleDocumentClick = this.handleOutsideClick.bind(this);
     this.#handleKeyDown = this.handleKeyboardNavigation.bind(this);
   }
@@ -98,26 +94,16 @@ export class DropdownSelect extends HTMLElement {
    * binds the necessary ui events to the component
    */
   bindUI() {
-    // bind trigger click
-    this.#trigger.addEventListener('click', this.#handleTriggerClick);
-
-    // bind option clicks
-    this.#options.forEach((option) => {
-      option.addEventListener('click', this.#handleOptionClick);
-    });
+    // No need to bind element events - child components manage their own events
+    // This method is kept for potential future global event binding
   }
 
   /**
    * unbinds event listeners
    */
   unbindUI() {
-    // remove trigger event
-    this.#trigger.removeEventListener('click', this.#handleTriggerClick);
-
-    // remove option events
-    this.#options.forEach((option) => {
-      option.removeEventListener('click', this.#handleOptionClick);
-    });
+    // No element events to remove - child components manage their own events
+    // This method is kept for potential future global event cleanup
 
     // remove document events if they exist
     document.removeEventListener('click', this.#handleDocumentClick);

@@ -5,12 +5,14 @@
  */
 export class DropdownTrigger extends HTMLElement {
   #handleKeyDown;
+  #handleClick;
   
   constructor() {
     super();
     // Make the trigger focusable
     this.setAttribute('tabindex', '0');
     this.#handleKeyDown = this.#onKeyDown.bind(this);
+    this.#handleClick = this.#onClick.bind(this);
   }
 
   connectedCallback() {
@@ -21,12 +23,14 @@ export class DropdownTrigger extends HTMLElement {
       this.appendChild(caret);
     }
     
-    // Add keyboard event listener
+    // Add event listeners
     this.addEventListener('keydown', this.#handleKeyDown);
+    this.addEventListener('click', this.#handleClick);
   }
   
   disconnectedCallback() {
     this.removeEventListener('keydown', this.#handleKeyDown);
+    this.removeEventListener('click', this.#handleClick);
   }
   
   /**
@@ -39,15 +43,27 @@ export class DropdownTrigger extends HTMLElement {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation(); // Prevent event bubbling
-      
-      // Find parent dropdown-select and toggle it
-      const dropdown = this.closest('dropdown-select');
-      if (dropdown && typeof dropdown.toggleDropdown === 'function') {
-        dropdown.toggleDropdown();
-      } else {
-        // Fallback to click if direct method call isn't available
-        this.click();
-      }
+      this.#toggleDropdown();
+    }
+  }
+  
+  /**
+   * Handle click events on the trigger
+   * @param {MouseEvent} e - The mouse event
+   * @private
+   */
+  #onClick(e) {
+    this.#toggleDropdown();
+  }
+  
+  /**
+   * Toggle the parent dropdown
+   * @private
+   */
+  #toggleDropdown() {
+    const dropdown = this.closest('dropdown-select');
+    if (dropdown && typeof dropdown.toggleDropdown === 'function') {
+      dropdown.toggleDropdown();
     }
   }
 }

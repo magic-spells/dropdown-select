@@ -5,8 +5,6 @@
  */
 class DropdownSelect extends HTMLElement {
   // private fields for event handlers
-  #handleTriggerClick;
-  #handleOptionClick;
   #handleDocumentClick;
   #handleKeyDown;
 
@@ -30,8 +28,6 @@ class DropdownSelect extends HTMLElement {
     this.setAttribute('aria-hidden', 'true');
 
     // bind event handlers
-    this.#handleTriggerClick = this.toggleDropdown.bind(this);
-    this.#handleOptionClick = this.selectOption.bind(this);
     this.#handleDocumentClick = this.handleOutsideClick.bind(this);
     this.#handleKeyDown = this.handleKeyboardNavigation.bind(this);
   }
@@ -98,26 +94,16 @@ class DropdownSelect extends HTMLElement {
    * binds the necessary ui events to the component
    */
   bindUI() {
-    // bind trigger click
-    this.#trigger.addEventListener('click', this.#handleTriggerClick);
-
-    // bind option clicks
-    this.#options.forEach((option) => {
-      option.addEventListener('click', this.#handleOptionClick);
-    });
+    // No need to bind element events - child components manage their own events
+    // This method is kept for potential future global event binding
   }
 
   /**
    * unbinds event listeners
    */
   unbindUI() {
-    // remove trigger event
-    this.#trigger.removeEventListener('click', this.#handleTriggerClick);
-
-    // remove option events
-    this.#options.forEach((option) => {
-      option.removeEventListener('click', this.#handleOptionClick);
-    });
+    // No element events to remove - child components manage their own events
+    // This method is kept for potential future global event cleanup
 
     // remove document events if they exist
     document.removeEventListener('click', this.#handleDocumentClick);
@@ -386,12 +372,14 @@ class DropdownSelect extends HTMLElement {
  */
 class DropdownTrigger extends HTMLElement {
   #handleKeyDown;
+  #handleClick;
   
   constructor() {
     super();
     // Make the trigger focusable
     this.setAttribute('tabindex', '0');
     this.#handleKeyDown = this.#onKeyDown.bind(this);
+    this.#handleClick = this.#onClick.bind(this);
   }
 
   connectedCallback() {
@@ -402,12 +390,14 @@ class DropdownTrigger extends HTMLElement {
       this.appendChild(caret);
     }
     
-    // Add keyboard event listener
+    // Add event listeners
     this.addEventListener('keydown', this.#handleKeyDown);
+    this.addEventListener('click', this.#handleClick);
   }
   
   disconnectedCallback() {
     this.removeEventListener('keydown', this.#handleKeyDown);
+    this.removeEventListener('click', this.#handleClick);
   }
   
   /**
@@ -420,15 +410,27 @@ class DropdownTrigger extends HTMLElement {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation(); // Prevent event bubbling
-      
-      // Find parent dropdown-select and toggle it
-      const dropdown = this.closest('dropdown-select');
-      if (dropdown && typeof dropdown.toggleDropdown === 'function') {
-        dropdown.toggleDropdown();
-      } else {
-        // Fallback to click if direct method call isn't available
-        this.click();
-      }
+      this.#toggleDropdown();
+    }
+  }
+  
+  /**
+   * Handle click events on the trigger
+   * @param {MouseEvent} e - The mouse event
+   * @private
+   */
+  #onClick(e) {
+    this.#toggleDropdown();
+  }
+  
+  /**
+   * Toggle the parent dropdown
+   * @private
+   */
+  #toggleDropdown() {
+    const dropdown = this.closest('dropdown-select');
+    if (dropdown && typeof dropdown.toggleDropdown === 'function') {
+      dropdown.toggleDropdown();
     }
   }
 }
@@ -450,8 +452,42 @@ class DropdownOptions extends HTMLElement {
  * @extends HTMLElement
  */
 class DropdownOption extends HTMLElement {
+  #handleClick;
+  
   constructor() {
     super();
+    this.#handleClick = this.#onClick.bind(this);
+  }
+  
+  connectedCallback() {
+    // Add click event listener
+    this.addEventListener('click', this.#handleClick);
+  }
+  
+  disconnectedCallback() {
+    // Clean up event listener
+    this.removeEventListener('click', this.#handleClick);
+  }
+  
+  /**
+   * Handle click events on the option
+   * @param {MouseEvent} e - The mouse event
+   * @private
+   */
+  #onClick(e) {
+    e.preventDefault();
+    this.#notifySelection();
+  }
+  
+  /**
+   * Notify the parent dropdown that this option was selected
+   * @private
+   */
+  #notifySelection() {
+    const dropdown = this.closest('dropdown-select');
+    if (dropdown && typeof dropdown.selectOption === 'function') {
+      dropdown.selectOption({ target: this });
+    }
   }
 }
 
@@ -480,4 +516,3 @@ if (!customElements.get('dropdown-option')) {
 }
 
 export { DropdownOption, DropdownOptions, DropdownSelect, DropdownTrigger };
-//# sourceMappingURL=dropdown-select.esm.js.map
