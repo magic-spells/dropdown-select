@@ -2,6 +2,8 @@
 
 A fully accessible custom dropdown web component that can be used as a replacement for the native `<select>` element with enhanced styling options and keyboard navigation.
 
+🔍 **[Live Demo](https://magic-spells.github.io/dropdown-select/demo/)** - See it in action!
+
 ## Features
 
 - 🎨 Fully customizable styling
