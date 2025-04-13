@@ -98,6 +98,14 @@ export default [
           comments: false,
         },
       }),
+      // Additional copy plugin at the end to copy files for GitHub Pages demo
+      copy({
+        targets: [
+          { src: "dist/dropdown-select.min.js", dest: "demo", rename: "dropdown-select.js" },
+          { src: "dist/dropdown-select.css", dest: "demo" }
+        ],
+        hook: 'writeBundle' // Run this after all output files are written
+      }),
     ],
   },
 ];

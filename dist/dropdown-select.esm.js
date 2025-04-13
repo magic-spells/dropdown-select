@@ -516,3 +516,4 @@ if (!customElements.get('dropdown-option')) {
 }
 
 export { DropdownOption, DropdownOptions, DropdownSelect, DropdownTrigger };
+//# sourceMappingURL=dropdown-select.esm.js.map
