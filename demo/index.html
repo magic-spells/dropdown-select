@@ -96,6 +96,31 @@
 
       .theme-selector {
         margin-bottom: 2rem;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .theme-button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.25rem;
+        background-color: #f8f8f8;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        color: black;
+      }
+
+      .theme-button:hover {
+        background-color: #eee;
+      }
+
+      .theme-button.active {
+        background-color: #4299e1;
+        color: white;
+        border-color: #2b6cb0;
+        font-weight: 500;
       }
 
       /* custom themes for the demo */
@@ -104,41 +129,41 @@
       }
 
       .theme-dark dropdown-select {
-        --color-background: #2d3748;
-        --color-text: #e2e8f0;
-        --color-border: #4a5568;
-        --color-border-hover: #718096;
-        --color-border-dark: #a0aec0;
-        --color-primary: #4299e1;
-        --color-hover: #1a202c;
-        --color-focus: #2c5282;
-        --color-selected: #2c5282;
+        --select-color-background: #2d3748;
+        --select-color-text: #e2e8f0;
+        --select-color-border: #4a5568;
+        --select-color-border-hover: #718096;
+        --select-color-border-dark: #a0aec0;
+        --select-color-primary: #4299e1;
+        --select-color-hover: #1a202c;
+        --select-color-focus: #2c5282;
+        --select-color-selected: #2c5282;
       }
 
       .theme-rounded dropdown-select {
-        --border-radius: 2rem;
-        --color-primary: #9f7aea;
-        --color-focus: #e9d8fd;
-        --color-selected: #e9d8fd;
+        --select-border-radius: 2rem;
+        --select-color-primary: #9f7aea;
+        --select-color-focus: #e9d8fd;
+        --select-color-selected: #e9d8fd;
       }
 
       .theme-minimal dropdown-select {
-        --border-radius: 0;
-        --color-border: #e2e8f0;
-        --color-border-hover: #cbd5e0;
-        --color-primary: #718096;
-        --color-focus: #f7fafc;
-        --color-selected: #f7fafc;
-        --box-shadow: none;
+        --select-border-radius: 0;
+        --select-color-border: #e2e8f0;
+        --select-color-border-hover: #cbd5e0;
+        --select-color-primary: #718096;
+        --select-color-focus: #f7fafc;
+        --select-color-selected: #f7fafc;
+        --select-box-shadow: none;
       }
 
       .theme-colorful dropdown-select {
-        --color-primary: #ed64a6;
-        --color-hover: #fed7e2;
-        --color-focus: #fbb6ce;
-        --color-selected: #fbb6ce;
-        --color-border: #ed64a6;
-        --color-border-hover: #d53f8c;
+        --select-color-primary: #ed64a6;
+        --select-color-hover: #fed7e2;
+        --select-color-focus: #fbb6ce;
+        --select-color-selected: #fbb6ce;
+        --select-color-border: #ed64a6;
+        --select-color-border-hover: #d53f8c;
       }
 
       /* instructions area */
@@ -250,15 +275,40 @@
           variables.
         </p>
 
-        <div class="theme-selector">
-          <label for="theme-select">Select a theme:</label>
-          <select id="theme-select">
-            <option value="default">Default</option>
-            <option value="dark">Dark</option>
-            <option value="rounded">Rounded</option>
-            <option value="minimal">Minimal</option>
-            <option value="colorful">Colorful</option>
-          </select>
+        <div>
+          <p>Select a theme:</p>
+          <div class="theme-selector">
+            <button
+              type="button"
+              class="theme-button active"
+              data-theme="default">
+              Default
+            </button>
+            <button
+              type="button"
+              class="theme-button"
+              data-theme="dark">
+              Dark
+            </button>
+            <button
+              type="button"
+              class="theme-button"
+              data-theme="rounded">
+              Rounded
+            </button>
+            <button
+              type="button"
+              class="theme-button"
+              data-theme="minimal">
+              Minimal
+            </button>
+            <button
+              type="button"
+              class="theme-button"
+              data-theme="colorful">
+              Colorful
+            </button>
+          </div>
         </div>
 
         <div id="theme-demo" class="demo-container theme-default">
@@ -509,12 +559,25 @@
             `${e.detail.text} (value: ${e.detail.value})`;
         });
 
-        // Theme selector
-        const themeSelect = document.getElementById('theme-select');
+        // Theme selector buttons
+        const themeButtons =
+          document.querySelectorAll('.theme-button');
         const themeDemo = document.getElementById('theme-demo');
 
-        themeSelect.addEventListener('change', function () {
-          themeDemo.className = `demo-container theme-${this.value}`;
+        themeButtons.forEach((button) => {
+          button.addEventListener('click', function () {
+            // Remove active class from all buttons
+            themeButtons.forEach((btn) =>
+              btn.classList.remove('active')
+            );
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Update theme class
+            const theme = this.dataset.theme;
+            themeDemo.className = `demo-container theme-${theme}`;
+          });
         });
 
         // Form example
