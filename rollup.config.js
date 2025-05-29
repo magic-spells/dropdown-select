@@ -10,6 +10,12 @@ const name = "dropdown-select";
 // css processing configuration
 const cssConfig = {
   extract: true,
+  minimize: false,
+  sourceMap: !production,
+};
+
+const cssConfigMinified = {
+  extract: true,
   minimize: production,
   sourceMap: !production,
 };
@@ -90,7 +96,7 @@ export default [
     plugins: [
       resolve(),
       postcss({
-        ...cssConfig,
+        ...cssConfigMinified,
         extract: `${name}.min.css`,
       }),
       terser({
