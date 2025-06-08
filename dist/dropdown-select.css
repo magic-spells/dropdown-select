@@ -47,7 +47,7 @@ dropdown-select[aria-hidden=true] dropdown-options {
 }
 
 /* trigger button styles */
-dropdown-trigger {
+dropdown-select-trigger {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,10 +59,10 @@ dropdown-trigger {
   cursor: pointer;
   transition: border-color var(--select-transition-duration), box-shadow var(--select-transition-duration);
 }
-dropdown-trigger:hover {
+dropdown-select-trigger:hover {
   border-color: var(--select-color-border-hover);
 }
-dropdown-trigger:focus {
+dropdown-select-trigger:focus {
   outline: none;
   border-color: var(--select-color-primary);
   box-shadow: 0 0 0 3px rgba(var(--select-color-primary-rgb, 66, 153, 225), 0.25);
@@ -78,7 +78,7 @@ dropdown-trigger:focus {
 }
 
 /* Flipped caret when expanded (default direction) */
-dropdown-select:not([direction=up]) dropdown-trigger[aria-expanded=true] .dropdown-caret {
+dropdown-select:not([direction=up]) dropdown-select-trigger[aria-expanded=true] .dropdown-caret {
   transform: rotate(180deg);
 }
 
@@ -90,7 +90,7 @@ dropdown-select[direction=up] .dropdown-caret {
 }
 
 /* Flip back to normal when expanded for upward dropdowns */
-dropdown-select[direction=up] dropdown-trigger[aria-expanded=true] .dropdown-caret {
+dropdown-select[direction=up] dropdown-select-trigger[aria-expanded=true] .dropdown-caret {
   transform: rotate(0);
 }
 

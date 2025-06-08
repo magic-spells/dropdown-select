@@ -37,7 +37,7 @@ export class DropdownSelect extends HTMLElement {
    */
   connectedCallback() {
     // query all dom elements needed for the component
-    this.#trigger = this.querySelector('dropdown-trigger');
+    this.#trigger = this.querySelector('dropdown-select-trigger');
     this.#input = this.querySelector('input');
     this.#optionsContainer = this.querySelector('dropdown-options');
     this.#options = this.querySelectorAll('dropdown-option');
@@ -74,7 +74,7 @@ export class DropdownSelect extends HTMLElement {
     trigger.setAttribute('role', 'combobox');
 
     if (!trigger.id) {
-      trigger.id = `dropdown-trigger-${Date.now()}`;
+      trigger.id = `dropdown-select-trigger-${Date.now()}`;
     }
 
     // setup listbox

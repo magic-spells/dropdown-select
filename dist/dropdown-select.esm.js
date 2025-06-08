@@ -37,7 +37,7 @@ class DropdownSelect extends HTMLElement {
    */
   connectedCallback() {
     // query all dom elements needed for the component
-    this.#trigger = this.querySelector('dropdown-trigger');
+    this.#trigger = this.querySelector('dropdown-select-trigger');
     this.#input = this.querySelector('input');
     this.#optionsContainer = this.querySelector('dropdown-options');
     this.#options = this.querySelectorAll('dropdown-option');
@@ -74,7 +74,7 @@ class DropdownSelect extends HTMLElement {
     trigger.setAttribute('role', 'combobox');
 
     if (!trigger.id) {
-      trigger.id = `dropdown-trigger-${Date.now()}`;
+      trigger.id = `dropdown-select-trigger-${Date.now()}`;
     }
 
     // setup listbox
@@ -366,11 +366,11 @@ class DropdownSelect extends HTMLElement {
 }
 
 /**
- * dropdown-trigger component
- * @class DropdownTrigger
+ * dropdown-select-trigger component
+ * @class DropdownSelectTrigger
  * @extends HTMLElement
  */
-class DropdownTrigger extends HTMLElement {
+class DropdownSelectTrigger extends HTMLElement {
   #handleKeyDown;
   #handleClick;
   
@@ -503,8 +503,8 @@ if (!customElements.get('dropdown-select')) {
   customElements.define('dropdown-select', DropdownSelect);
 }
 
-if (!customElements.get('dropdown-trigger')) {
-  customElements.define('dropdown-trigger', DropdownTrigger);
+if (!customElements.get('dropdown-select-trigger')) {
+  customElements.define('dropdown-select-trigger', DropdownSelectTrigger);
 }
 
 if (!customElements.get('dropdown-options')) {
@@ -515,4 +515,4 @@ if (!customElements.get('dropdown-option')) {
   customElements.define('dropdown-option', DropdownOption);
 }
 
-export { DropdownOption, DropdownOptions, DropdownSelect, DropdownTrigger };
+export { DropdownOption, DropdownOptions, DropdownSelect, DropdownSelectTrigger };

@@ -24,7 +24,7 @@ dropdown-select[aria-hidden='true'] dropdown-options {
 }
 
 /* trigger button styles */
-dropdown-trigger {
+dropdown-select-trigger {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,7 +61,7 @@ dropdown-trigger {
 
 /* Flipped caret when expanded (default direction) */
 dropdown-select:not([direction='up'])
-  dropdown-trigger[aria-expanded='true']
+  dropdown-select-trigger[aria-expanded='true']
   .dropdown-caret {
   transform: rotate(180deg);
 }
@@ -75,7 +75,7 @@ dropdown-select[direction='up'] .dropdown-caret {
 
 /* Flip back to normal when expanded for upward dropdowns */
 dropdown-select[direction='up']
-  dropdown-trigger[aria-expanded='true']
+  dropdown-select-trigger[aria-expanded='true']
   .dropdown-caret {
   transform: rotate(0);
 }

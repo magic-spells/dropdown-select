@@ -31,7 +31,7 @@
     }
   }
 
-  var css_248z = ":root {\n  --select-dropdown-width: 300px;\n  --select-options-max-height: 15rem;\n  --select-caret-size: 0.25rem;\n  --select-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;\n  --select-font-size-base: 1rem;\n  --select-line-height: 1.5;\n  --select-color-text: #333;\n  --select-color-background: #fff;\n  --select-color-border: #ddd;\n  --select-color-border-hover: #aaa;\n  --select-color-border-dark: #666;\n  --select-color-primary: #4299e1;\n  --select-color-primary-rgb: 66, 153, 225;\n  --select-color-hover: #f0f0f0;\n  --select-color-focus: #e6f7ff;\n  --select-color-selected: #e6f7ff;\n  --select-spacing-xs: 0.25rem;\n  --select-spacing-sm: 0.75rem;\n  --select-spacing-md: 1rem;\n  --select-border-radius: 0.25rem;\n  --select-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  --select-z-index-dropdown: 10;\n  --select-transition-duration: 0.2s;\n}\n\n/* dropdown component styles */\ndropdown-select {\n  position: relative;\n  width: var(--select-dropdown-width);\n  margin-bottom: var(--select-spacing-md);\n  display: block;\n  font-family: var(--select-font-family);\n  font-size: var(--select-font-size-base);\n  line-height: var(--select-line-height);\n  color: var(--select-color-text);\n  box-sizing: border-box;\n}\n\ndropdown-select * {\n  box-sizing: border-box;\n}\n\n/* hide dropdown when aria-hidden=\"true\" */\ndropdown-select[aria-hidden=true] dropdown-options {\n  display: none;\n}\n\n/* trigger button styles */\ndropdown-trigger {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  padding: var(--select-spacing-sm) var(--select-spacing-md);\n  background-color: var(--select-color-background);\n  border: 1px solid var(--select-color-border);\n  border-radius: var(--select-border-radius);\n  cursor: pointer;\n  transition: border-color var(--select-transition-duration), box-shadow var(--select-transition-duration);\n}\ndropdown-trigger:hover {\n  border-color: var(--select-color-border-hover);\n}\ndropdown-trigger:focus {\n  outline: none;\n  border-color: var(--select-color-primary);\n  box-shadow: 0 0 0 3px rgba(var(--select-color-primary-rgb, 66, 153, 225), 0.25);\n}\n\n/* caret icon */\n.dropdown-caret {\n  border-style: solid;\n  border-width: var(--select-caret-size) var(--select-caret-size) 0;\n  border-color: var(--select-color-border-dark) transparent transparent;\n  margin-left: var(--select-spacing-sm);\n  transition: transform var(--select-transition-duration);\n}\n\n/* Flipped caret when expanded (default direction) */\ndropdown-select:not([direction=up]) dropdown-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(180deg);\n}\n\n/* Already flipped caret for upward dropdowns when closed */\ndropdown-select[direction=up] .dropdown-caret {\n  transform: rotate(180deg);\n  border-width: 0 var(--select-caret-size) var(--select-caret-size);\n  border-color: transparent transparent var(--select-color-border-dark);\n}\n\n/* Flip back to normal when expanded for upward dropdowns */\ndropdown-select[direction=up] dropdown-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(0);\n}\n\n/* options container */\ndropdown-options {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  max-height: var(--select-options-max-height);\n  overflow-y: auto;\n  background-color: var(--select-color-background);\n  border: 1px solid var(--select-color-border);\n  border-radius: var(--select-border-radius);\n  box-shadow: var(--select-box-shadow);\n  z-index: var(--select-z-index-dropdown);\n}\n\n/* Default direction (down) */\ndropdown-select:not([direction=up]) dropdown-options {\n  top: calc(100% + var(--select-spacing-xs));\n}\n\n/* Direction up */\ndropdown-select[direction=up] dropdown-options {\n  bottom: calc(100% + var(--select-spacing-xs));\n}\n\n/* Add some elevation for upward direction to create nice shadow */\ndropdown-select[direction=up] dropdown-options {\n  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);\n}\n\n/* styling for the list */\n.dropdown-list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n/* option items */\ndropdown-option {\n  padding: var(--select-spacing-sm) var(--select-spacing-md);\n  cursor: pointer;\n  transition: background-color var(--select-transition-duration);\n  display: block;\n}\ndropdown-option:hover {\n  background-color: var(--select-color-hover);\n}\ndropdown-option:focus {\n  outline: none;\n  background-color: var(--select-color-focus);\n  box-shadow: inset 0 0 0 2px var(--select-color-primary);\n}\ndropdown-option[aria-selected=true] {\n  background-color: var(--select-color-selected);\n  font-weight: 500;\n}\n\n/* hidden input */\n.dropdown-hidden-input {\n  position: absolute;\n  opacity: 0;\n  height: 0;\n  width: 0;\n}";
+  var css_248z = ":root {\n  --select-dropdown-width: 300px;\n  --select-options-max-height: 15rem;\n  --select-caret-size: 0.25rem;\n  --select-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;\n  --select-font-size-base: 1rem;\n  --select-line-height: 1.5;\n  --select-color-text: #333;\n  --select-color-background: #fff;\n  --select-color-border: #ddd;\n  --select-color-border-hover: #aaa;\n  --select-color-border-dark: #666;\n  --select-color-primary: #4299e1;\n  --select-color-primary-rgb: 66, 153, 225;\n  --select-color-hover: #f0f0f0;\n  --select-color-focus: #e6f7ff;\n  --select-color-selected: #e6f7ff;\n  --select-spacing-xs: 0.25rem;\n  --select-spacing-sm: 0.75rem;\n  --select-spacing-md: 1rem;\n  --select-border-radius: 0.25rem;\n  --select-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  --select-z-index-dropdown: 10;\n  --select-transition-duration: 0.2s;\n}\n\n/* dropdown component styles */\ndropdown-select {\n  position: relative;\n  width: var(--select-dropdown-width);\n  margin-bottom: var(--select-spacing-md);\n  display: block;\n  font-family: var(--select-font-family);\n  font-size: var(--select-font-size-base);\n  line-height: var(--select-line-height);\n  color: var(--select-color-text);\n  box-sizing: border-box;\n}\n\ndropdown-select * {\n  box-sizing: border-box;\n}\n\n/* hide dropdown when aria-hidden=\"true\" */\ndropdown-select[aria-hidden=true] dropdown-options {\n  display: none;\n}\n\n/* trigger button styles */\ndropdown-select-trigger {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  padding: var(--select-spacing-sm) var(--select-spacing-md);\n  background-color: var(--select-color-background);\n  border: 1px solid var(--select-color-border);\n  border-radius: var(--select-border-radius);\n  cursor: pointer;\n  transition: border-color var(--select-transition-duration), box-shadow var(--select-transition-duration);\n}\ndropdown-select-trigger:hover {\n  border-color: var(--select-color-border-hover);\n}\ndropdown-select-trigger:focus {\n  outline: none;\n  border-color: var(--select-color-primary);\n  box-shadow: 0 0 0 3px rgba(var(--select-color-primary-rgb, 66, 153, 225), 0.25);\n}\n\n/* caret icon */\n.dropdown-caret {\n  border-style: solid;\n  border-width: var(--select-caret-size) var(--select-caret-size) 0;\n  border-color: var(--select-color-border-dark) transparent transparent;\n  margin-left: var(--select-spacing-sm);\n  transition: transform var(--select-transition-duration);\n}\n\n/* Flipped caret when expanded (default direction) */\ndropdown-select:not([direction=up]) dropdown-select-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(180deg);\n}\n\n/* Already flipped caret for upward dropdowns when closed */\ndropdown-select[direction=up] .dropdown-caret {\n  transform: rotate(180deg);\n  border-width: 0 var(--select-caret-size) var(--select-caret-size);\n  border-color: transparent transparent var(--select-color-border-dark);\n}\n\n/* Flip back to normal when expanded for upward dropdowns */\ndropdown-select[direction=up] dropdown-select-trigger[aria-expanded=true] .dropdown-caret {\n  transform: rotate(0);\n}\n\n/* options container */\ndropdown-options {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  max-height: var(--select-options-max-height);\n  overflow-y: auto;\n  background-color: var(--select-color-background);\n  border: 1px solid var(--select-color-border);\n  border-radius: var(--select-border-radius);\n  box-shadow: var(--select-box-shadow);\n  z-index: var(--select-z-index-dropdown);\n}\n\n/* Default direction (down) */\ndropdown-select:not([direction=up]) dropdown-options {\n  top: calc(100% + var(--select-spacing-xs));\n}\n\n/* Direction up */\ndropdown-select[direction=up] dropdown-options {\n  bottom: calc(100% + var(--select-spacing-xs));\n}\n\n/* Add some elevation for upward direction to create nice shadow */\ndropdown-select[direction=up] dropdown-options {\n  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);\n}\n\n/* styling for the list */\n.dropdown-list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n/* option items */\ndropdown-option {\n  padding: var(--select-spacing-sm) var(--select-spacing-md);\n  cursor: pointer;\n  transition: background-color var(--select-transition-duration);\n  display: block;\n}\ndropdown-option:hover {\n  background-color: var(--select-color-hover);\n}\ndropdown-option:focus {\n  outline: none;\n  background-color: var(--select-color-focus);\n  box-shadow: inset 0 0 0 2px var(--select-color-primary);\n}\ndropdown-option[aria-selected=true] {\n  background-color: var(--select-color-selected);\n  font-weight: 500;\n}\n\n/* hidden input */\n.dropdown-hidden-input {\n  position: absolute;\n  opacity: 0;\n  height: 0;\n  width: 0;\n}";
   styleInject(css_248z);
 
   /**
@@ -73,7 +73,7 @@
      */
     connectedCallback() {
       // query all dom elements needed for the component
-      this.#trigger = this.querySelector('dropdown-trigger');
+      this.#trigger = this.querySelector('dropdown-select-trigger');
       this.#input = this.querySelector('input');
       this.#optionsContainer = this.querySelector('dropdown-options');
       this.#options = this.querySelectorAll('dropdown-option');
@@ -110,7 +110,7 @@
       trigger.setAttribute('role', 'combobox');
 
       if (!trigger.id) {
-        trigger.id = `dropdown-trigger-${Date.now()}`;
+        trigger.id = `dropdown-select-trigger-${Date.now()}`;
       }
 
       // setup listbox
@@ -402,11 +402,11 @@
   }
 
   /**
-   * dropdown-trigger component
-   * @class DropdownTrigger
+   * dropdown-select-trigger component
+   * @class DropdownSelectTrigger
    * @extends HTMLElement
    */
-  class DropdownTrigger extends HTMLElement {
+  class DropdownSelectTrigger extends HTMLElement {
     #handleKeyDown;
     #handleClick;
     
@@ -539,8 +539,8 @@
     customElements.define('dropdown-select', DropdownSelect);
   }
 
-  if (!customElements.get('dropdown-trigger')) {
-    customElements.define('dropdown-trigger', DropdownTrigger);
+  if (!customElements.get('dropdown-select-trigger')) {
+    customElements.define('dropdown-select-trigger', DropdownSelectTrigger);
   }
 
   if (!customElements.get('dropdown-options')) {
@@ -554,6 +554,6 @@
   exports.DropdownOption = DropdownOption;
   exports.DropdownOptions = DropdownOptions;
   exports.DropdownSelect = DropdownSelect;
-  exports.DropdownTrigger = DropdownTrigger;
+  exports.DropdownSelectTrigger = DropdownSelectTrigger;
 
 }));

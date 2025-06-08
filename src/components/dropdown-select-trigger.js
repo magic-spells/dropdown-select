@@ -1,9 +1,9 @@
 /**
- * dropdown-trigger component
- * @class DropdownTrigger
+ * dropdown-select-trigger component
+ * @class DropdownSelectTrigger
  * @extends HTMLElement
  */
-export class DropdownTrigger extends HTMLElement {
+export class DropdownSelectTrigger extends HTMLElement {
   #handleKeyDown;
   #handleClick;
   

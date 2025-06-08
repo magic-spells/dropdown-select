@@ -9,20 +9,20 @@ import './styles/dropdown-select.scss';
 
 // import components
 import { DropdownSelect } from './components/dropdown-select.js';
-import { DropdownTrigger } from './components/dropdown-trigger.js';
+import { DropdownSelectTrigger } from './components/dropdown-select-trigger.js';
 import { DropdownOptions } from './components/dropdown-options.js';
 import { DropdownOption } from './components/dropdown-option.js';
 
 // export components for external use
-export { DropdownSelect, DropdownTrigger, DropdownOptions, DropdownOption };
+export { DropdownSelect, DropdownSelectTrigger, DropdownOptions, DropdownOption };
 
 // define custom elements if not already defined
 if (!customElements.get('dropdown-select')) {
   customElements.define('dropdown-select', DropdownSelect);
 }
 
-if (!customElements.get('dropdown-trigger')) {
-  customElements.define('dropdown-trigger', DropdownTrigger);
+if (!customElements.get('dropdown-select-trigger')) {
+  customElements.define('dropdown-select-trigger', DropdownSelectTrigger);
 }
 
 if (!customElements.get('dropdown-options')) {

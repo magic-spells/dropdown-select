@@ -64,9 +64,9 @@ This package provides multiple distribution formats for different environments:
 
 ```html
 <dropdown-select>
-	<dropdown-trigger>
+	<dropdown-select-trigger>
 		<span class="dropdown-label">Select an option</span>
-	</dropdown-trigger>
+	</dropdown-select-trigger>
 
 	<input type="hidden" class="dropdown-hidden-input" name="selected-option" />
 
@@ -195,7 +195,7 @@ This enables theme switching and custom styling without modifying the component 
 <dropdown-select id="fruit-dropdown">
 	<dropdown-trigger id="fruit-trigger">
 		<span class="dropdown-label">Apple</span>
-	</dropdown-trigger>
+	</dropdown-select-trigger>
 
 	<input
 		type="hidden"
@@ -227,7 +227,7 @@ This enables theme switching and custom styling without modifying the component 
 		<dropdown-select id="fruit-dropdown">
 			<dropdown-trigger id="fruit-trigger">
 				<span class="dropdown-label">Select a fruit</span>
-			</dropdown-trigger>
+			</dropdown-select-trigger>
 
 			<input
 				type="hidden"
