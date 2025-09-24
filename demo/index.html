@@ -222,48 +222,33 @@
         <div class="demo-container theme-default">
           <dropdown-select id="fruit-dropdown">
             <dropdown-select-trigger id="fruit-trigger">
-              <span class="dropdown-label">Select a fruit</span>
+              <span class="dropdown-label">Cherry</span>
             </dropdown-select-trigger>
 
             <input
               type="hidden"
               class="dropdown-hidden-input"
               name="selected-fruit"
-              id="selected-fruit" />
+              id="selected-fruit"
+              value="cherry" />
 
             <dropdown-options>
-              <ul class="dropdown-list">
-                <li>
-                  <dropdown-option data-value="apple"
-                    >Apple</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="banana"
-                    >Banana</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="cherry"
-                    >Cherry</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="durian"
-                    >Durian</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="elderberry"
-                    >Elderberry</dropdown-option
-                  >
-                </li>
-              </ul>
+              <dropdown-option value="apple">Apple</dropdown-option>
+              <dropdown-option value="banana">Banana</dropdown-option>
+              <dropdown-option value="cherry" selected
+                >Cherry</dropdown-option
+              >
+              <dropdown-option value="durian">Durian</dropdown-option>
+              <dropdown-option value="elderberry"
+                >Elderberry</dropdown-option
+              >
             </dropdown-options>
           </dropdown-select>
 
           <div class="output-area">
-            <p>Selected fruit: <span id="fruit-output">None</span></p>
+            <p>
+              Selected fruit: <span id="fruit-output">Cherry</span>
+            </p>
           </div>
         </div>
       </section>
@@ -312,6 +297,7 @@
         </div>
 
         <div id="theme-demo" class="demo-container theme-default">
+          <label>Select a color:</label>
           <dropdown-select id="color-dropdown">
             <dropdown-select-trigger id="color-trigger">
               <span class="dropdown-label">Select a color</span>
@@ -322,39 +308,14 @@
               class="dropdown-hidden-input"
               name="selected-color"
               id="selected-color" />
-            <label>Select a color</label>
 
             <dropdown-options>
-              <ul class="dropdown-list">
-                <li>
-                  <dropdown-option data-value=""> - </dropdown-option>
-                </li>
-                <li>
-                  <dropdown-option data-value="red"
-                    >Red</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="green"
-                    >Green</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="blue"
-                    >Blue</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="yellow"
-                    >Yellow</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="purple"
-                    >Purple</dropdown-option
-                  >
-                </li>
-              </ul>
+              <dropdown-option value=""> - </dropdown-option>
+              <dropdown-option value="red">Red</dropdown-option>
+              <dropdown-option value="green">Green</dropdown-option>
+              <dropdown-option value="blue">Blue</dropdown-option>
+              <dropdown-option value="yellow">Yellow</dropdown-option>
+              <dropdown-option value="purple">Purple</dropdown-option>
             </dropdown-options>
           </dropdown-select>
 
@@ -386,33 +347,13 @@
                 id="animal-input" />
 
               <dropdown-options>
-                <ul class="dropdown-list">
-                  <li>
-                    <dropdown-option data-value="dog"
-                      >Dog</dropdown-option
-                    >
-                  </li>
-                  <li>
-                    <dropdown-option data-value="cat"
-                      >Cat</dropdown-option
-                    >
-                  </li>
-                  <li>
-                    <dropdown-option data-value="bird"
-                      >Bird</dropdown-option
-                    >
-                  </li>
-                  <li>
-                    <dropdown-option data-value="fish"
-                      >Fish</dropdown-option
-                    >
-                  </li>
-                  <li>
-                    <dropdown-option data-value="rabbit"
-                      >Rabbit</dropdown-option
-                    >
-                  </li>
-                </ul>
+                <dropdown-option value="dog">Dog</dropdown-option>
+                <dropdown-option value="cat">Cat</dropdown-option>
+                <dropdown-option value="bird">Bird</dropdown-option>
+                <dropdown-option value="fish">Fish</dropdown-option>
+                <dropdown-option value="rabbit"
+                  >Rabbit</dropdown-option
+                >
               </dropdown-options>
             </dropdown-select>
           </div>
@@ -466,68 +407,44 @@
         <div class="demo-container">
           <dropdown-select id="country-dropdown">
             <dropdown-select-trigger id="country-trigger">
-              <span class="dropdown-label">Select a country</span>
+              <span class="dropdown-label">Japan</span>
             </dropdown-select-trigger>
 
             <input
               type="hidden"
               class="dropdown-hidden-input"
               name="selected-country"
-              id="selected-country" />
+              id="selected-country"
+              value="japan" />
 
             <dropdown-options>
-              <ul class="dropdown-list">
-                <li>
-                  <dropdown-option data-value="australia"
-                    >Australia</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="brazil"
-                    >Brazil</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="canada"
-                    >Canada</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="denmark"
-                    >Denmark</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="egypt"
-                    >Egypt</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="france"
-                    >France</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="germany"
-                    >Germany</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="india"
-                    >India</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="japan"
-                    >Japan</dropdown-option
-                  >
-                </li>
-                <li>
-                  <dropdown-option data-value="mexico"
-                    >Mexico</dropdown-option
-                  >
-                </li>
-              </ul>
+              <dropdown-option value="argentina">Argentina</dropdown-option>
+              <dropdown-option value="australia">Australia</dropdown-option>
+              <dropdown-option value="belgium">Belgium</dropdown-option>
+              <dropdown-option value="brazil">Brazil</dropdown-option>
+              <dropdown-option value="canada">Canada</dropdown-option>
+              <dropdown-option value="china">China</dropdown-option>
+              <dropdown-option value="denmark">Denmark</dropdown-option>
+              <dropdown-option value="egypt">Egypt</dropdown-option>
+              <dropdown-option value="finland">Finland</dropdown-option>
+              <dropdown-option value="france">France</dropdown-option>
+              <dropdown-option value="germany">Germany</dropdown-option>
+              <dropdown-option value="greece">Greece</dropdown-option>
+              <dropdown-option value="india">India</dropdown-option>
+              <dropdown-option value="italy">Italy</dropdown-option>
+              <dropdown-option value="japan" selected>Japan</dropdown-option>
+              <dropdown-option value="korea">South Korea</dropdown-option>
+              <dropdown-option value="mexico">Mexico</dropdown-option>
+              <dropdown-option value="netherlands">Netherlands</dropdown-option>
+              <dropdown-option value="norway">Norway</dropdown-option>
+              <dropdown-option value="poland">Poland</dropdown-option>
+              <dropdown-option value="portugal">Portugal</dropdown-option>
+              <dropdown-option value="russia">Russia</dropdown-option>
+              <dropdown-option value="spain">Spain</dropdown-option>
+              <dropdown-option value="sweden">Sweden</dropdown-option>
+              <dropdown-option value="switzerland">Switzerland</dropdown-option>
+              <dropdown-option value="uk">United Kingdom</dropdown-option>
+              <dropdown-option value="usa">United States</dropdown-option>
             </dropdown-options>
           </dropdown-select>
 

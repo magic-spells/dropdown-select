@@ -11,6 +11,7 @@ A fully accessible custom dropdown web component that can be used as a replaceme
 - ⌨️ Complete keyboard navigation support
 - 📱 Mobile-friendly
 - 🔍 Typeahead search functionality
+- 📜 Auto-scroll to selected items in long lists
 - 🧩 Zero dependencies
 - 📦 Small footprint (~3KB minified and gzipped)
 
@@ -71,11 +72,9 @@ This package provides multiple distribution formats for different environments:
 	<input type="hidden" class="dropdown-hidden-input" name="selected-option" />
 
 	<dropdown-options>
-		<ul class="dropdown-list">
-			<li><dropdown-option data-value="option1">Option 1</dropdown-option></li>
-			<li><dropdown-option data-value="option2">Option 2</dropdown-option></li>
-			<li><dropdown-option data-value="option3">Option 3</dropdown-option></li>
-		</ul>
+		<dropdown-option value="option1">Option 1</dropdown-option>
+		<dropdown-option value="option2">Option 2</dropdown-option>
+		<dropdown-option value="option3">Option 3</dropdown-option>
 	</dropdown-options>
 </dropdown-select>
 ```
@@ -205,15 +204,9 @@ This enables theme switching and custom styling without modifying the component 
 	/>
 
 	<dropdown-options>
-		<ul class="dropdown-list">
-			<li>
-				<dropdown-option data-value="apple" aria-selected="true"
-					>Apple</dropdown-option
-				>
-			</li>
-			<li><dropdown-option data-value="banana">Banana</dropdown-option></li>
-			<li><dropdown-option data-value="cherry">Cherry</dropdown-option></li>
-		</ul>
+		<dropdown-option value="apple" aria-selected="true">Apple</dropdown-option>
+		<dropdown-option value="banana">Banana</dropdown-option>
+		<dropdown-option value="cherry">Cherry</dropdown-option>
 	</dropdown-options>
 </dropdown-select>
 ```
@@ -237,11 +230,9 @@ This enables theme switching and custom styling without modifying the component 
 			/>
 
 			<dropdown-options>
-				<ul class="dropdown-list">
-					<li><dropdown-option data-value="apple">Apple</dropdown-option></li>
-					<li><dropdown-option data-value="banana">Banana</dropdown-option></li>
-					<li><dropdown-option data-value="cherry">Cherry</dropdown-option></li>
-				</ul>
+				<dropdown-option value="apple">Apple</dropdown-option>
+				<dropdown-option value="banana">Banana</dropdown-option>
+				<dropdown-option value="cherry">Cherry</dropdown-option>
 			</dropdown-options>
 		</dropdown-select>
 	</div>

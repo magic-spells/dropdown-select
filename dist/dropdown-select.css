@@ -123,13 +123,6 @@ dropdown-select[direction=up] dropdown-options {
   box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* styling for the list */
-.dropdown-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 /* option items */
 dropdown-option {
   padding: var(--select-spacing-sm) var(--select-spacing-md);

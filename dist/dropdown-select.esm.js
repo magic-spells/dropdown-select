@@ -49,6 +49,7 @@ class DropdownSelect extends HTMLElement {
     // initialize component
     this.setupAriaAttributes();
     this.bindUI();
+    this.initializeSelectedOption();
 
     // set initial state
     this.hide();
@@ -59,6 +60,68 @@ class DropdownSelect extends HTMLElement {
    */
   disconnectedCallback() {
     this.unbindUI();
+  }
+
+  /**
+   * Gets the value from an option element, supporting both 'value' and 'data-value' attributes
+   * @param {HTMLElement} option - The option element
+   * @returns {string} The option value
+   * @private
+   */
+  #getOptionValue(option) {
+    return option.getAttribute('value') || option.dataset.value || option.textContent.trim();
+  }
+
+  /**
+   * Initializes any pre-selected options based on 'selected' attribute or existing aria-selected
+   * @private
+   */
+  initializeSelectedOption() {
+    // Look for options with 'selected' attribute first
+    let selectedOption = Array.from(this.#options).find(
+      (opt) => opt.hasAttribute('selected')
+    );
+
+    // If no 'selected' attribute, look for aria-selected="true"
+    if (!selectedOption) {
+      selectedOption = Array.from(this.#options).find(
+        (opt) => opt.getAttribute('aria-selected') === 'true'
+      );
+    }
+
+    // If we found a selected option, update the component state
+    if (selectedOption) {
+      // Clear all selections first
+      this.#options.forEach((opt) => {
+        opt.removeAttribute('selected');
+        opt.setAttribute('aria-selected', 'false');
+      });
+
+      // Set the selected option (keep both attributes in sync)
+      selectedOption.setAttribute('aria-selected', 'true');
+      selectedOption.setAttribute('selected', '');
+
+      // Update the input value
+      if (this.#input) {
+        this.#input.value = this.#getOptionValue(selectedOption);
+      }
+
+      // Update the visible label
+      if (this.#label) {
+        this.#label.textContent = selectedOption.textContent.trim();
+      }
+
+      // Dispatch change event for initial state
+      this.dispatchEvent(
+        new CustomEvent('change', {
+          detail: {
+            value: this.#getOptionValue(selectedOption),
+            text: selectedOption.textContent.trim(),
+          },
+          bubbles: true,
+        })
+      );
+    }
   }
 
   /**
@@ -230,6 +293,12 @@ class DropdownSelect extends HTMLElement {
       options[index].setAttribute('tabindex', '0');
       options[index].focus();
       this.#currentFocusIndex = index;
+
+      // Ensure the option is visible in the dropdown
+      options[index].scrollIntoView({
+        block: 'nearest', // Only scroll if needed
+        behavior: 'smooth' // Smooth scroll for better UX during keyboard nav
+      });
     }
   }
 
@@ -255,14 +324,16 @@ class DropdownSelect extends HTMLElement {
     // update aria-selected on all options
     this.#options.forEach((opt) => {
       opt.setAttribute('aria-selected', 'false');
+      opt.removeAttribute('selected');
     });
 
-    // mark selected option
+    // mark selected option (keep both attributes in sync)
     option.setAttribute('aria-selected', 'true');
+    option.setAttribute('selected', '');
 
     // update the input value
     if (this.#input) {
-      this.#input.value = option.dataset.value || option.textContent.trim();
+      this.#input.value = this.#getOptionValue(option);
     }
 
     // update the visible label
@@ -274,7 +345,7 @@ class DropdownSelect extends HTMLElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: {
-          value: option.dataset.value || option.textContent.trim(),
+          value: this.#getOptionValue(option),
           text: option.textContent.trim(),
         },
         bubbles: true,
@@ -333,6 +404,11 @@ class DropdownSelect extends HTMLElement {
     if (selectedOption) {
       const selectedIndex = Array.from(this.#options).indexOf(selectedOption);
       this.focusOption(selectedIndex);
+      // For initial open, ensure selected item is centered for better visibility
+      selectedOption.scrollIntoView({
+        block: 'center',  // Center the selected item in view
+        behavior: 'instant' // No animation on initial open
+      });
     } else if (this.#options.length > 0) {
       this.focusOption(0);
     }
